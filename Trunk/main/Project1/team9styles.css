@@ -1,0 +1,106 @@
+
+#header {
+	border-style: solid;
+	border-color: silver;
+	color: white;
+	background-color: #CF0000;
+	padding: 10px;
+	border-radius: 3px;
+}
+
+#header h1{
+	padding: none;
+	margin: 0;
+}
+
+#header h4{
+	margin: 0;
+}
+
+#header li{
+	display: inline;
+}
+
+#distribution{
+	clear: both;
+}
+
+#tasks > li{
+	list-style-type: upper-roman;
+	
+}
+
+#accordion h3{
+	cursor: pointer;
+	background-color: silver;
+	width: 50%;
+	border-radius: 3px;
+	clear: both;
+}
+
+.gloss{
+	padding: 0;
+	height: auto;
+	width: auto;
+	border: solid black 1px;
+	background-color: #CCFFFF;
+	border-radius: 2px;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+.clearfix {
+    display: inline-block;
+}
+
+
+
+dl {
+	padding: 0;
+	clear: both;
+}
+
+dt {
+	padding: 1px;
+	clear: both;
+	float: left;
+	font-weight: bold;
+	width: 15em;
+}
+
+dt:after {
+	content: ":";
+}
+
+dd{	
+	padding: 1px;
+	float: left;
+	width: 20em;
+}
+
+#iucd{
+	cursor: pointer;
+}
+
+#iucd:hover{
+	text-decoration: underline;
+}
+
+#iucddiv{
+	display: none;
+}
+
+#iucddiv h5{
+	cursor: pointer;
+}
+
+#iucddiv h5:hover{
+	text-decoration: underline;
+}

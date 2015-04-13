@@ -1,0 +1,18 @@
+Chocaholics Anonymous - Organization that helps people with chocolate addiction problems. They are the main customer of our software product. They act as an insurance company of sorts for members who buy from providers
+Provider - An organization that works with Chocaholics A. They are usually some kind of medical provider, like a dietician or a therapist. they charge CA for services provided to members
+Terminal - The computer that providers use to enter information about members. Our software will run here in 
+Member - A paying customer of CA. They pay CA for discounts at provider businesses.
+Data Center - A division of CA. They will run our software in interactive mode, and can change records of providers and members
+Member Number - A unique id number assigned to each member.
+Provider Directory - A list of all providers types. This can be requested by a provider to aid in entering records
+Service Code - A number corresponding to a particular service provided to a member. For example, there is a code for seeing a dietician or therapist.
+Service Fee - The standard fee charged for a particular service to CA.
+Main Account Procedure - A reporting procedure that runs every Friday night. It generates reports for each individual member and provider, and sends a summery report to a Accounts Receivable manager.
+ChocAn Manager - Managers help organize CA records in the CA data center. They can request any report at any time.
+ChocAn Report - A document containing information about providers, members, or financial transactions.
+Electronic Funds Transfer (EFT) - A report containing provider name, provider number, and currency amount to be transferred. EFT report is generated during the main accounting procedure.
+Summary Report - Report given to accounts payable manager. Report lists providers to be paid that week, number of consultations each had, and total fee for the week.
+Accounts Payable - The list of provider accounts that must be paid.
+Interactive Mode - Mode that allows ChocAn operators to add new members, deleted resigned members, and update member records. Provider records can also be added, deleted, or updated.
+Acme Accounting Services - Third party accounting service contracted by ChocAn.
+Communications Software - Software needed to facilitate the communication links between the ChocAn data process software, provider terminals, and Acme Accounting Services.

@@ -1,0 +1,2 @@
+INDEX VERSION 1.127+Y:\sdev\GitCS351\Trunk\.metadata\.plugins\org.eclipse.jdt.core
+563213044.index

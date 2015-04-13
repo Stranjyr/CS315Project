@@ -1,0 +1,5 @@
+package com.team9.finalproject.connectors;
+
+public class InteractiveConnector {
+
+}

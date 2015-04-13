@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CS 315 Team 9 Results</title>
+<link rel = 'stylesheet' href='./team9styles.css'>
+<meta charset = "UTF-8">
+<meta name = "author" content = "Austin Hyde">
+<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css"> -->
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script>
+$(document).on('ready',function(){
+	$("#accordion").accordion({
+		collapsible: true,
+		active: false,
+		heightStyle: "content",
+		icons: {
+		header: "ui-icon-arrowthick-1-e",
+		activeHeader: "ui-icon-arrowthick-1-s"}
+	});
+});
+
+$(document).on('ready',function(){
+	$("#iucddiv").accordion({
+		collapsible: true,
+		active: false,
+		heightStyle: "content",
+		icons: {
+		header: "ui-icon-arrowthick-1-e",
+		activeHeader: "ui-icon-arrowthick-1-s"}
+	});
+});
+
+</script>
+<script>
+$(document).ready(function(){
+	$( '#iucd' ).click(function() {
+		$( '#iucddiv' ).slideToggle(300);
+	});
+});
+</script>
+</head>
+<body>
+	<div id='header'>
+		<h1>CS 315 Team 9</h1>
+		<h3>Team Members:
+			<ul>
+				<li>Austin Hyde,</li>
+				<li>Ben Kidd,</li>
+				<li>Joe Fowler,</li>
+				<li>Justin Gifford,</li>
+				<li>William Hampton</li>
+			</ul>
+		</h3>
+		<h4>Submitter: <u>Austin Hyde</u> <h4>
+	</div>
+	<div id="accordion">
+		<h3>Analysis Description</h3>
+		<div>
+			<p>
+				We will computerize the following: Entering card information, storage and editing of user and company profiles, the validation of entered information, and report generation of entered information. The data will be stored in a database at chocoholics anonymous headquarters. Hardware requirements are a server to host the database, an email server to send reports, provider terminals to enter payment information, and user terminals to run interactive mode. Our system will provide output  and receive information from terminals. It will serve reports to the financial system. Users will receive and request reports, and be able to submit information. 
+			</p>
+		</div>
+		<h3>Stereotyped Class Diagram</h3>
+		<div>
+			<img src = "./Models/DynamicModels/Images/ObjectDiagram.jpg"/>
+		</div>
+		<h3>Activity Diagrams</h3>
+		<div id = 'uml-images'>
+			<h4>Main Activity Diagram</h4>
+			<img src = './Models/DynamicModels/Images/MainActivityDiagram.jpg'/>
+			<h5 id = 'iucd'>Other Activity Diagrams</h5>
+			<div id = 'iucddiv'>
+			<h5>Validate Number</h5>
+				<div>
+					<img src = './Models/DynamicModels/Images/ValidateNumber.jpg'>
+				</div>
+				<h5>Bill for Service</h5>
+				<div>
+					<img src = './Models/DynamicModels/Images/billForService.jpg'>
+				</div>
+				<h5>Directory Request</h5>
+				<div>
+					<img src = './Models/DynamicModels/Images/DirectoryRequested.jpg'>
+				</div>
+				<h5>Generate Single Report</h5>
+				<div>
+					<img src = './Models/DynamicModels/Images/GenerateSingleReport.jpg'>
+				</div>
+				<h5>Generate Batch Report</h5>
+				<div>
+					<img src = './Models/DynamicModels/Images/GenerateBatchReport.jpg'>
+				</div>
+				<h5>Accounting Software Update</h5>
+				<div>
+					<img src = './Models/DynamicModels/Images/acmeUpdate.jpg'>
+				</div>
+				<h5>Add Member</h5>
+				<div>
+					<img src = './Models/DynamicModels/Images/addMember.jpg'>
+				</div>
+				<h5>Edit Member</h5>
+				<div>
+					<img src = './Models/DynamicModels/Images/editMember.jpg'>
+				</div>
+				<h5>Delete Member</h5>
+				<div>
+					<img src = './Models/DynamicModels/Images/deleteMember.jpg'>
+				</div>
+				<h5>Add Provider</h5>
+				<div>
+					<img src = './Models/DynamicModels/Images/addProvider.jpg'>
+				</div>
+				<h5>Edit Provider</h5>
+				<div>
+					<img src = './Models/DynamicModels/Images/editProvider.jpg'>
+				</div>
+				<h5>Delete Provider</h5>
+				<div>
+					<img src = './Models/DynamicModels/Images/deleteProvider.jpg'>
+				</div>
+			</div>
+		</div>
+		
+		<h3>Statistics</h3>
+		<div>
+			<h4>Percent Authorship</h4>
+			<img src = './Other_Documents/PercentAuthor.png'/>
+			<h4>SVN Statistics</h4>
+			<img src = './Other_Documents/StatisticsSVN.png'/>
+		</div>
+		<h3>Task Distribution</h3>
+		<div id = 'distribution'>
+			<ol id = 'tasks'>
+				<li>UML Diagrams
+					<ol id = 'umlDiag'>
+						<li>Main Activity Diagram (Justin)</li>
+						<li>Add/Edit/Delete Provider (Austin)</li>
+						<li>Bill for Service, Report Generation Diagrams (Joe)</li>
+						<li>Add/Edit/Delete Member, acme Update(Ben)</li>
+						<li>Validate, Request Directory (Will)</li>
+					</ol>
+				</li>
+				<li>Stereotyped Class Diagram (All)</li>
+				<li>Analysis Description (Justin, Will)</li>
+				<li>Writing HTML Report (Austin)</li>
+				<li>Distribution, by % of Total Time
+					<ol id = 'timeDist'>
+						<li>Austin, 20%</li>
+						<li>Ben, 20%</li>
+						<li>Joe, 20%</li>
+						<li>Justin, 20%</li>
+						<li>William, 20%</li>
+					</ol>
+				</li>
+			</ol>
+		</div>
+		<h3>Other Resources</h3>
+		<div>
+			<h4>Visual Paradigm Files</h4>
+			<a href='./Models/DynamicModels/Finished/acmeUpdate.vpp'>Accounting Software Update</a>
+			<a href='./Models/DynamicModels/Finished/addMember.vpp'>Add Member</a>
+			<a href='./Models/DynamicModels/Finished/billForService.vpp'>Bill for Service</a>
+			<a href='./Models/DynamicModels/Finished/deleteMember.vpp'>Delete Member</a>
+			<a href='./Models/DynamicModels/Finished/editMember.vpp'>Edit Member</a>
+			<a href='./Models/DynamicModels/Finished/MainActivityDiagram.vpp'>Main Activity Diagram</a>
+			<a href='./Models/DynamicModels/Finished/ReportsActivityDiagrams.vpp'>Batch/Individual Reports</a>
+			<a href='./Models/DynamicModels/Finished/RequestDirectory.vpp'>Request Directory</a>
+			<a href='./Models/DynamicModels/Finished/Validate.vpp'>Validate</a>
+		</div>
+	</div>
+
+</body>
+</html>

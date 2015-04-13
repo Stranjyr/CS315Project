@@ -1,0 +1,12 @@
+Task Distribution
+
+-Diagrams
+	-Main Activity Diagram (Justin)
+	-Add/Edit/Delete Provider(Austin)
+	-BillForService, ReportsActivityDiagrams(Joe)
+	-Add/edit/delete member/acme update (Benjamin)
+	-Validate, Request Directory (Will)
+
+-Stereotyped Class Diagram(all)
+-Analysis Description(Justin, Will, anyone else?)
+-Html Report(Austin)

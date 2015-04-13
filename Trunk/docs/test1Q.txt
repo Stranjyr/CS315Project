@@ -1,0 +1,9 @@
+Question 1: Given a paragraph, draw a use case diagram
+Question 2: Given Paragraph, create a use case deiscription usieng template
+Question 3: create a CRC card for use case.
+Q 4: procuce a steriotyped class diagram
+Q 5: Activity diagram
+10 MC
+2 questions from software process models
+Which process model would you choose and why? Which would you not choose and why?
+In class we talked about x process: diagram and describe.

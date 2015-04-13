@@ -1,0 +1,13 @@
+package com.team9.finalproject.dataMembers;
+
+public interface DataInterface {
+	/**
+	 * @Author Wchampton
+	 * This Method can be called to format
+	 * all data in a datamember for a report
+	 * @return Returns all data in a DataMember
+	 * formated as a line delineated String
+	 */
+	public String reportFormat();
+
+}

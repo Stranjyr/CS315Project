@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CS 315 Team 9 Results</title>
+<link rel = 'stylesheet' href='./team9styles.css'>
+<meta charset = "UTF-8">
+<meta name = "author" content = "Austin Hyde">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script>
+$(document).on('ready',function(){
+	$("#accordion").accordion({
+		collapsible: true,
+		active: false,
+		heightStyle: "content",
+		icons: {
+		header: "ui-icon-arrowthick-1-e",
+		activeHeader: "ui-icon-arrowthick-1-s"}
+	});
+});
+
+$(document).on('ready',function(){
+	$("#iucddiv").accordion({
+		collapsible: true,
+		active: false,
+		heightStyle: "content",
+		icons: {
+		header: "ui-icon-arrowthick-1-e",
+		activeHeader: "ui-icon-arrowthick-1-s"}
+	});
+});
+
+</script>
+<script>
+$(document).ready(function(){
+	$( '#iucd' ).click(function() {
+		$( '#iucddiv' ).slideToggle(300);
+	});
+});
+</script>
+</head>
+<body>
+	<div id='header'>
+		<h1>CS 315 Team 9</h1>
+		<h3>Team Members:
+			<ul>
+				<li>Austin Hyde,</li>
+				<li>Ben Kidd,</li>
+				<li>Joe Fowler,</li>
+				<li>Justin Gifford,</li>
+				<li>William Hampton</li>
+			</ul>
+		</h3>
+		<h4>Submitter: <u>Austin Hyde</u> <h4>
+	</div>
+	<div id="accordion">
+		<h3>Glossary</h3>
+		<div class = 'gloss clearfix'>
+			<dl>
+				<dt>Chocaholics Anonymous</dt>
+				<dd>Organization that helps people suffering from chocolate addiction problems.   They are the main customer of our software product. They act as an insurance company of sorts for members who buy from providers.</dd>
+				<dt>Provider</dt>
+				<dd>An individual or organization that works with Chocaholics A. They are usually some kind of medical provider, like a dietician or a therapist. they charge CA for services provided to members.
+				<dt>Terminal</dt>
+				<dd>The computer that providers use to enter information about members.</dd>
+				<dt>Member</dt>
+				<dd>A paying customer of CA. They pay CA for discounts at provider businesses.</dd>
+				<dt>Data Center</dt>
+				<dd>A division of CA. They will run our software in interactive mode, and their operators can change records of providers and members.</dd>
+				<dt>Member Number</dt>
+				<dd>A unique id number assigned to each member.</dd>
+				<dt>Provider Directory</dt>
+				<dd>A list of all providers types. This can be requested by a provider to aid in entering records.</dd>
+				<dt>Service Code</dt>
+				<dd>A number corresponding to a particular service provided to a member. For example, there is a code for seeing a dietician or therapist.</dd>
+				<dt>Service Fee</dt>
+				<dd>The standard fee charged for a particular service to CA.</dd>
+				<dt>Main Account Procedure</dt>
+				<dd>A reporting procedure that runs every Friday night. It generates reports for each individual member and provider, and sends a summery report to a Accounts Receivable manager.</dd>
+				<dt>ChocAn Manager</dt>
+				<dd>Managers help organize CA records in the CA data center. They can request any report at any time.</dd>
+				<dt>ChocAn Report</dt>
+				<dd>A document containing information about providers, members, or financial transactions.</dd>
+				<dt>Electronic Funds Transfer</dt>
+				<dd>A report containing provider name, provider number, and currency amount to be transferred. EFT report is generated during the main accounting procedure.</dd>
+				<dt>Summary Report</dt>
+				<dd>Report given to accounts payable manager. Report lists providers to be paid that week, number of consultations each had, and total fee for the week.</dd>
+				<dt>Accounts Payable</dt>
+				<dd>The list of provider accounts that must be paid.</dd>
+				<dt>Interactive Mode</dt>
+				<dd>Mode that allows ChocAn operators to add new members, deleted resigned members, and update member records. Provider records can also be added, deleted, or updated.</dd>
+				<dt>Acme Accounting Services</dt>
+				<dd>Third party accounting service contracted by ChocAn.</dd>
+				<dt>Communications Software</dt>
+				<dd>Software needed to facilitate the communication links between the ChocAn data process software, provider terminals, and Acme Accounting Services.</dd>
+			</dl>
+		</div>
+		<h3>UML Diagrams</h3>
+		<div id = 'uml-images'>
+			<h4>Full System Diagram</h4><br>
+			<img src = './UML_Images/UnifiedProcess.jpg'/> 
+			<h4 id='iucd'>Individual Use Case Diagrams</h4>
+			<div id = 'iucddiv'>
+				<h5>Validation</h5>
+				<div>
+					<img src = './UML_Images/Validate.jpg'>
+				</div>
+				<h5>Billing</h5>
+				<div>
+					<img src = './UML_Images/Billing.jpg'>
+				</div>
+				<h5>Directory Request</h5>
+				<div>
+					<img src = './UML_Images/RequestDirectory.jpg'>
+				</div>
+				<h5>Create Member Report</h5>
+				<div>
+					<img src = './UML_Images/MemberReport.jpg'>
+				</div>
+				<h5>Create Provider Report</h5>
+				<div>
+					<img src = './UML_Images/ProviderReport.jpg'>
+				</div>
+				<h5>Save EFT Data</h5>
+				<div>
+					<img src = './UML_Images/EFT.jpg'>
+				</div>
+				<h5>Run Accounting Procedure</h5>
+				<div>
+					<img src = './UML_Images/Accounting%20Procedure.jpg'>
+				</div>
+				<h5>Add/Modify Member Data</h5>
+				<div>
+					<img src = './UML_Images/MemberTableA.jpg'>
+				</div>
+				<h5>Add/Modify Provider Data</h5>
+				<div>
+					<img src = './UML_Images/ProviderTableA.jpg'>
+				</div>
+			</div>
+		</div>
+		<h3>Use Cases</h3>
+		<div id = 'use_case'>
+			<div>
+			<dl>
+				<dt>Use Case</dt>
+				<dd>Validate</dd>
+				<dt>Context</dt>
+				<dd>Used to Verify a Member's Credentials</dd>
+				<dt>Actors</dt>
+				<dd>Member, Provider</dd>
+				<dt>Main Success Scenario</dt>
+				<dd>
+					1. Provider swipes card<br>
+					2. Software contacts database<br>
+					3. database validates number<br>
+					4. Terminal displays "Validated"<br>
+				</dd>
+				<dt>Extensions</dt>
+				<dd>
+					1.a Ok Keys in number<br>
+					4.a If failed, display error<br>
+					4.a.1 Invalid<br>
+					4.a.2 Member Suspended<br>
+				</dd>
+				
+			</dl>
+			<dl>
+				<dt>Use Case</dt>
+				<dd>Billing</dd>
+				<dt>Context</dt>
+				<dd>Used to Bill a Member for Services Provided</dd>
+				<dt>Actors</dt>
+				<dd>Provider</dd>
+				<dt>Main Success Scenario</dt>
+				<dd>
+					1. Use Validate Method<br>
+					2. Enter date of service<br>
+					3. enter Service code<br>
+					4. Software display service name<br>
+					5. Ask for conformation<br>
+					6. Write record to disk (See table A)<br>
+					7. Look up fee, and Display fee on terminal<br>
+					8. Prompt user to fill out paper form<br>
+				</dd>
+				<dt>Extensions</dt>
+				<dd>
+					4.a If invalid code, display error<br>
+					5.a If not right service, go to step 3<br>
+					5.b Can add comments here<br>
+				</dd>
+				
+			</dl>
+			<dl>
+				<dt>Use Case</dt>
+				<dd>Request Directory</dd>
+				<dt>Context</dt>
+				<dd>Provider Requests Directory of Services</dd>
+				<dt>Actors</dt>
+				<dd>Provider</dd>
+				<dt>Main Success Scenario</dt>
+				<dd>
+					1. Provider requests directory (Service Names, Codes, and Fees)<br>
+					2. Software creates directory as file<br>
+					3. Software emails directory to Provider<br>
+				</dd>
+				<dt>Extensions</dt>
+				<dd>
+					2.a Ordered Alphabetically (Service Names)<br>
+				</dd>
+				
+			</dl>
+			<dl>
+				<dt>Use Case</dt>
+				<dd>Member Report</dd>
+				<dt>Context</dt>
+				<dd>Used to generate a report of all services utilized by a member.</dd>
+				<dt>Actors</dt>
+				<dd>ChocAnon Mangers, Accounting Procedure, Members</dd>
+				<dt>Main Success Scenario</dt>
+				<dd>
+					1. Report Requested<br>
+					2. Get Weeks file of services<br>
+					3. Aggregate Data from database using member number<br>
+					4. Save report to file<br>
+					5. Email it to customer<br>
+				</dd>
+				<dt>Extensions</dt>
+				<dd>
+					1.a. By manager<br>
+					1.b By Accounting<br>
+					5.a or manager (on request)<br>
+				</dd>
+				
+			</dl>
+			<dl>
+				<dt>Use Case</dt>
+				<dd>Provider Report</dd>
+				<dt>Context</dt>
+				<dd>Used to generate a report of all services sold by a provider.</dd>
+				<dt>Actors</dt>
+				<dd>ChocAnon Manager, Accounting Procedure, Providers</dd>
+				<dt>Main Success Scenario</dt>
+				<dd>
+					1. Report requested<br>
+					2. Get Week's file of services<br>
+					3. Aggregate Data from database using provider number<br>
+					4. Save report to file<br>
+					5. Email it to Provider<br>
+				</dd>
+				<dt>Extensions</dt>
+				<dd>
+					1.a. By provider<br>
+					1.b. By manager<br>
+					1.c By accounting<br>
+					3.a(see table C)<br>
+					5.a or manager (on request)<br>
+				</dd>
+				
+			</dl>
+			<dl>
+				<dt>Use Case</dt>
+				<dd>Electronic Funds Transfer</dd>
+				<dt>Context</dt>
+				<dd>Used to produce data for the Bank to perform an EFT</dd>
+				<dt>Actors</dt>
+				<dd>Banking Computer, Accounting Procedure</dd>
+				<dt>Main Success Scenario</dt>
+				<dd>
+					1. EFT requested by Accounting Procedure<br>
+					2. Aggregates Provider name, number, and total weekly fee<br>
+					3. Saves as file<br>
+				</dd>
+				<dt>Extensions</dt>
+				<dd>
+					N/A
+				</dd>
+				
+			</dl>
+			<dl>
+				<dt>Use Case</dt>
+				<dd>Accounting Summary Report</dd>
+				<dt>Context</dt>
+				<dd>Run weekly to produce a report for the Accounts Payable Manager</dd>
+				<dt>Actors</dt>
+				<dd>Accounting Procedure, Accounts Payable Manager, Chocoholics Manager</dd>
+				<dt>Main Success Scenario</dt>
+				<dd>
+					1. Report requested<br>
+					2. Saves Summery Data to file<br>
+					3. Email file to Manager for accounts payable<br>
+					
+				</dd>
+				<dt>Extensions</dt>
+				<dd>
+					3.a or chocoholics manager (at request)
+				</dd>
+				
+			</dl>
+			<dl>
+				<dt>Use Case</dt>
+				<dd>Friday Night Report Runs</dd>
+				<dt>Context</dt>
+				<dd>Used to produce a number of weekly reports</dd>
+				<dt>Actors</dt>
+				<dd>Accounting Procedure, Accounts Payable Manager, Customers</dd>
+				<dt>Main Success Scenario</dt>
+				<dd>
+					1. Started by Accounting Procedure Friday at midnight<br>
+					2. Member report for every member<br>
+					3. Provider report for every provider<br>
+					4. EFT<br>
+					5. Summery report for Accounts payable manager<br>
+				</dd>
+				<dt>Extensions</dt>
+				<dd>
+					N/A
+				</dd>
+				
+			</dl>
+			<dl>
+				<dt>Use Case</dt>
+				<dd>Add Member</dd>
+				<dt>Context</dt>
+				<dd>Adds Member to Database</dd>
+				<dt>Actors</dt>
+				<dd>Data Center Operators</dd>
+				<dt>Main Success Scenario</dt>
+				<dd>
+					1. Operator Requests add new member<br>
+					2. Operator fills out table<br>
+					3. Software validates data<br>
+					4. Member number generated<br>
+					5. Conformation Screen<br>
+					6. Save to database<br>
+				</dd>
+				<dt>Extensions</dt>
+				<dd>
+					3.a If error, return to step 2<br>
+					5.a Operator clicks ok<br>
+					5.b Operator clicks cancel, return to step 2<br>
+				</dd>
+				
+			</dl>
+			<dl>
+				<dt>Use Case</dt>
+				<dd>Edit Member</dd>
+				<dt>Context</dt>
+				<dd>Used to edit data related to a particular member</dd>
+				<dt>Actors</dt>
+				<dd>Data Center Operators</dd>
+				<dt>Main Success Scenario</dt>
+				<dd>
+					1. Operator Selects member(s) on table<br>
+					2. Operator Clicks edit<br>
+					3. Operator changes any member fields<br>
+					4. Software validates data<br>
+					5. Conformation Screen<br>
+					6. Save to database<br>
+				</dd>
+				<dt>Extensions</dt>
+				<dd>
+					1.a Or searched member number/name<br>
+					2.a Operator taken to edit screen<br>
+					4.a If error, return to step 3<br>
+					5.a Operator clicks ok<br>
+					5.b Operator clicks cancel, return to step 3<br>
+				</dd>
+				
+			</dl>
+			<dl>
+				<dt>Use Case</dt>
+				<dd>Delete Member</dd>
+				<dt>Context</dd>
+				<dd>Used to remove a member from the database</dd>
+				<dt>Actors</dt>
+				<dd>Data Center Operators</dd>
+				<dt>Main Success Scenario</dt>
+				<dd>
+					1. Operator Selects member(s) on table<br>
+					2. operators clicks delete<br>
+					3. Conformation Screen<br>
+					4. Save to database<br>
+				</dd>
+				<dt>Extensions</dt>
+				<dd>
+					1.a Or searched member number/name<br>
+					3.a Operator clicks ok<br>
+					3.b Operator clicks cancel, return to step 1<br>
+				</dd>
+				
+			</dl>
+			<dl>
+				<dt>Use Case</dt>
+				<dd>Add Provider</dd>
+				<dt>Context</dd>
+				<dd>Used to add a provider to the database</dd>
+				<dt>Actors</dt>
+				<dd>Data Center Operators</dd>
+				<dt>Main Success Scenario:</dt>
+				<dd>
+					1. Operator Requests add new provider<br>
+					2. Operator fills out table<br>
+					3. Software validates data<br>
+					4. Provider number generated<br>
+					5. Conformation Screen<br>
+					6. Operator clicks ok<br>
+					7. Save to database<br>
+				</dd>
+				<dt>Extensions</dt>
+				<dd>
+					3.a If error, return to step 2<br>
+					6.a Operator clicks cancel, return to step 2<br>
+				</dd>
+				
+			</dl>
+			<dl>
+				<dt>Use Case</dt>
+				<dd>Edit Provider</dd>
+				<dt>Context</dd>
+				<dd>Used to edit data related to a provider</dd>
+				<dt>Actors</dt>
+				<dd>Data Center Operators</dd>
+				<dt>Main Success Scenario</dt>
+				<dd>
+					1. Operator Selects providers(s) on table<br>
+					2. Operator Clicks edit<br>
+					3. Operator changes any provider fields<br>
+					4. Software validates data<br>
+					5. Conformation Screen<br>
+					6. Operator clicks ok<br>
+					7. Save to database<br>
+				</dd>
+				<dt>Extensions</dt>
+				<dd>
+					1.a Or searched provider number/name<br>
+					2.a Operator taken to edit screen<br>
+					4.a If error, return to step 3<br>
+					6.a Operator clicks cancel, return to step 3<br>
+				</dd>
+			</dl>
+			<dl>
+				<dt>Use Case</dt>
+				<dd>Delete Provider</dd>
+				<dt>Context</dd>
+				<dd>Used to remove a provider from the database</dd>
+				<dt>Actors</dt>
+				<dd>Data Center Operators</dd>
+				<dt>Main Success Scenario</dt>
+				<dd>
+					1. Operator Selects providers(s) on table<br>
+					2. operators clicks delete<br>
+					3. Conformation Screen<br>
+					4. Save to database<br>
+				</dd>
+				<dt>Extensions</dt>
+				<dd>
+					1.a Or searched provider number/name<br>
+					3.a Operator clicks ok<br>
+					3.b Operator clicks cancel, return to step 1<br>
+				</dd>
+			</dl>
+			</div>
+		</div>
+		<h3>Statistics</h3>
+		<div>
+			<h4>Percent Authorship</h4>
+			<img src = './Other_Documents/PercentAuthor.png'/>
+			<h4>SVN Statistics</h4>
+			<img src = './Other_Documents/StatisticsSVN.png'/>
+		</div>
+		<h3>Task Distribution</h3>
+		<div id = 'distribution'>
+			<ol id = 'tasks'>
+				<li>UML Diagrams
+					<ol id = 'umlDiag'>
+						<li>Validate (Joe)</li>
+						<li>Bill for Service (Joe)</li>
+						<li>Request Directory (Joe)</li>
+						<li>Member Report (Ben)</li>
+						<li>Provider Report (Ben)</li>
+						<li>EFT (Ben)</li>
+						<li>Summary Report(Ben)</li>
+						<li>Account Procedure Report Generation (Austin)</li>
+						<li>Add User (Justin)</li>
+						<li>Add User (Justin)</li>
+						<li>Edit User (Justin)</li>
+						<li>Delete User (Justin)</li>
+						<li>Add Provider (William)</li>
+						<li>Delete Provider (William)</li>
+						<li>Combined System (All Members)</li>
+					</ol>
+				</li>
+				<li>Drafting Steps of Project (All Members)</li>
+				<li>Writing HTML Report (Austin)</li>
+				<li>Distribution, by % of Total Time
+					<ol id = 'timeDist'>
+						<li>Austin, 20%</li>
+						<li>Ben, 20%</li>
+						<li>Joe, 20%</li>
+						<li>Justin, 20%</li>
+						<li>William, 20%</li>
+					</ol>
+				</li>
+			</ol>
+		</div>
+		<h3>Other Resources</h3>
+		<div>
+			<h4>Visual Paradigm Files</h4>
+			<a href='./UML_Files/Accounting_Procedure.vpp'>Accounting Procedure</a>
+			<a href='./UML_Files/Billing.vpp'>Billing</a>
+			<a href='./UML_Files/EFT.vpp'>EFT</a>
+			<a href='./UML_Files/MemberReport.vpp'>Member Report</a>
+			<a href='./UML_Files/MemberTableA.vpp'>Member Table A</a>
+			<a href='./UML_Files/ProviderReport.vpp'>Provider Report</a>
+			<a href='./UML_Files/ProviderTableA.vpp'>Provider Table A</a>
+			<a href='./UML_Files/UnifiedSystems.vpp'>Unified Systems</a>
+			<a href='./UML_Files/Validate.vpp'>Validate</a>
+			<h4>Misc.</h4>
+			<a href='./Other_Documents/glossary.txt'>Glossary</a>
+			<a href='./Other_Documents/UML%20Descriptions.md'>UML Descriptions</a>
+		</div>
+	</div>
+
+</body>
+</html>
