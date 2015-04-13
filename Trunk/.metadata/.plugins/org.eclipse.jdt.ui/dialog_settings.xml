@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
-	<item value="Y:\sdev\cs315Team9\Trunk\src\Chocoholics" key="org.eclipse.jdt.ui.last.external.project"/>
+	<item value="Y:\sdev\cs315Team9\Trunk\src\Chocoholics\src" key="org.eclipse.jdt.ui.last.external.project"/>
 	<section name="org.eclipse.ltk.ui.refactoring.settings">
 		<item value="false" key="updateQualifiedNames"/>
 		<item value="*" key="patterns"/>

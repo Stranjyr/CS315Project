@@ -26,6 +26,7 @@ public class DataManager implements Serializable{
 	private ArrayList<Service> serviceList;
 	private HashMap<String, String> serviceDir;
 	private HashMap<String, Float> serviceCostMap;
+	private int idIndex;
 	public DataManager() {
 		super();
 		memberList = new ArrayList<Member>();
@@ -33,7 +34,17 @@ public class DataManager implements Serializable{
 		serviceList = new ArrayList<Service>();
 		serviceDir = new HashMap<String, String>();
 		serviceCostMap = new HashMap<String, Float>();
+		idIndex = 0;
 		//Load in serviceDir and serviceCostMap
+	}
+	public void incIdIndex()
+	{
+		idIndex++;
+		return;
+	}
+	public int getIdIndex()
+	{
+		return idIndex;
 	}
 	public int findMember(String id)
 	{
@@ -55,6 +66,24 @@ public class DataManager implements Serializable{
 				return providerList.indexOf(p);
 		}
 		return -1;
+	}
+	public Member findAndCloneMember(String id)
+	{
+		for(Member m : memberList)
+		{
+			if(m.getNumber().equals(id))
+				return m;
+		}
+		return null;
+	}
+	public User findAndCloneProvider(String id)
+	{
+		for(User p: providerList)
+		{
+			if(p.getNumber().equals(id))
+				return p;
+		}
+		return null;
 	}
 	public String validateMember(String memberID)
 	{
@@ -111,7 +140,7 @@ public class DataManager implements Serializable{
 			return "FAILED: INVALID ID";
 		}
 		providerList.set(memIndex, newM);
-		return "COMPLETE";
+		return "EDIT COMPLETE";
 	}
 	public String editProvider(String id, User newP)
 	{
@@ -121,7 +150,7 @@ public class DataManager implements Serializable{
 			return "FAILED: INVALID ID";
 		}
 		providerList.set(provIndex, newP);
-		return "COMPLETE";
+		return "EDIT COMPLETE";
 	}
 	public String removeMember(String id)
 	{
@@ -131,7 +160,7 @@ public class DataManager implements Serializable{
 			return "FAILED: INVALID ID";
 		}
 		providerList.remove(memIndex);
-		return "COMPLETE";
+		return "EDIT COMPLETE";
 	}
 	public String removeProvider(String id)
 	{
@@ -141,7 +170,7 @@ public class DataManager implements Serializable{
 			return "FAILED: INVALID ID";
 		}
 		providerList.remove(provIndex);
-		return "COMPLETE";
+		return "EDIT COMPLETE";
 	}
 	public HashMap<String, String> getDir()
 	{
@@ -151,19 +180,38 @@ public class DataManager implements Serializable{
 	{
 		return serviceCostMap.get(serviceCode);
 	}
+	public String listMembers()
+	{
+		String s = "";
+		for(Member m: memberList)
+		{
+			s+="Name:: "+m.getName()+"\n --  ID::  "+m.getNumber();
+		}
+		return s;
+	}
+	public String listProviders()
+	{
+		String s = "";
+		for(User p: providerList)
+		{
+			s+="Name:: "+p.getName()+"\n --  ID::  "+p.getNumber();
+		}
+		return s;
+	}
 	public String save()
 	{
 		try
 	      {
 	         FileOutputStream fileOut =
-	         new FileOutputStream("/ChocoDataBase/ChocoData.ser");
+	         new FileOutputStream("/ChocoData.ser");
 	         ObjectOutputStream out = new ObjectOutputStream(fileOut);
 	         out.writeObject(this);
 	         out.close();
 	         fileOut.close();
-	         return "Data is saved in /ChocoDataBase/ChocoData.ser";
+	         return "Data is saved in /ChocoData.ser";
 	      }catch(IOException i)
 	      {  
+	    	  i.printStackTrace();
 	    	  return "Save failed: Data Corrupt";
 	      }
 	}

@@ -3,10 +3,14 @@ package com.team9.finalproject.connectors;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.util.Date;
+import java.util.Map.Entry;
 import java.util.Scanner;
 
 import com.team9.finalproject.DataManager;
-import com.team9.finalproject.dataMembers.Member;
+import com.team9.finalproject.dataMembers.Service;
 
 public class ProviderConnector implements ConnectorInterface{
 
@@ -19,6 +23,7 @@ public class ProviderConnector implements ConnectorInterface{
 		display(startScreen());
 		dm = loadDataManager();
 		commandLoop();
+		scan.close();
 	}
 	private String startScreen() {
 		String s = "";
@@ -43,6 +48,7 @@ public class ProviderConnector implements ConnectorInterface{
 		  +"**** B == BILL - Bill for service****\n"
 		  +"**** V == VALIDATE - Check Member****\n"
 		  +"**** D == DIRECTORY - Shows Directory\n"
+		  +"**** Q == QUIT - Quits***************\n"
 		  +"*************************************\n"
 		  +"*************************************\n";
 		
@@ -87,19 +93,34 @@ public class ProviderConnector implements ConnectorInterface{
 				case 'B':
 					display("Enter Member ID to bill");
 					String memberId = scan.next();
-					String status = dm.validateMember(memberId);
-					if(!(status.toLowerCase()).equals("active"))
-					{
-						display("Member Error: "+ status);
-						break;
-					}
 					display("Enter your provider Number");
 					String provId = scan.next();
-					if(dm.findProvider(provId) == -1)
-					{
-						display("Provider number invalid");
-						break;
-					}
+					display("Enter Service Code");
+					String serCode = scan.next();
+					display("Enter month service was provided as a 2 digit number");
+					String m = scan.next();
+					display("Enter day of month service was provided as a 2 digit number");
+					String d = scan.next();
+					display("Enter year service was provided as a four digit number");
+					String y = scan.next();
+					display("Enter comment (Leave blank for no comment)");
+					String com = scan.next();
+					display(bill(memberId, provId, serCode, m+"//"+d+"//"+y, com));
+					break;
+				case 'V':
+					display("Enter Member ID to validate");
+					display(validate(scan.next()));
+					break;
+				case 'D':
+					display(getDirectory());
+					break;
+				case 'Q':
+					//This does not break, it returns to exit the loop
+					display(quit());
+					return "Exited";
+				default:
+					display("Invalid Command");
+					break;	
 			}
 			
 		}
@@ -111,30 +132,66 @@ public class ProviderConnector implements ConnectorInterface{
 				  +"**** B == BILL - Bill for service****\n"
 				  +"**** V == VALIDATE - Check Member****\n"
 				  +"**** D == DIRECTORY - Shows Directory\n"
+				  +"**** Q == QUIT - Quits***************\n"
 				  +"*************************************\n"
 				  +"*************************************\n"; 
 		return(s);
 	}
-	public String bill()
+	public String bill(String memberId, String provId, String serviceCode, String dateBill, String comment)
 	{
-		display("Enter Member ID to bill");
-		String memberId = scan.next();
+		
 		String status = dm.validateMember(memberId);
 		if(!(status.toLowerCase()).equals("active"))
 		{
 			return("Member Error: "+ status);
 			
 		}
-		display("Enter your provider Number");
-		String provId = scan.next();
 		if(dm.findProvider(provId) == -1)
 		{
 			return("Provider number invalid");
 		}
-		display("Enter Service Code");
-		String serviceCode = scan.next();
-		return null;
+		if(dm.getDir().get(serviceCode).equals(null))
+		{
+			return("Service Code Error: Check Directory");
+		}
+		Date bill;
+		try{
+
+			bill = DateFormat.getDateInstance(DateFormat.SHORT).parse(dateBill);
+		}
+		catch(ParseException p)
+		{
+			return "Error: Invalid Date";
+		}
+		if(comment.length()> 100)
+		{
+			comment = comment.substring(0,  100);
+		}
 		
+		//Now that all the validation is successful, add the service
+		dm.addService(new Service(serviceCode, bill.toString(), new Date().toString(), provId, memberId, comment));
+		
+		return "Billing Successful";
+		
+	}
+	public String validate(String memberId)
+	{
+		String status = dm.validateMember(memberId);
+		if(!(status.toLowerCase()).equals("active"))
+		{
+			return("Member Error: "+ status);
+			
+		}
+		return status;
+	}
+	public String getDirectory()
+	{
+		String d = "";
+		for(Entry<String, String> k: dm.getDir().entrySet())
+		{
+			d+=k.getKey()+" ::: "+k.getValue()+"\n";
+		}
+		return d;
 	}
 
 	@Override
@@ -142,7 +199,7 @@ public class ProviderConnector implements ConnectorInterface{
 		return dm.save()+"\nExiting";
 	}
 
-	@Override
+	
 	/**
 	 * Since this is a Console Display,
 	 * This method is just println();
@@ -152,6 +209,7 @@ public class ProviderConnector implements ConnectorInterface{
 	 * 
 	 * @param output String to be displayed
 	 */
+	@Override
 	public String display(String output) {
 		System.out.println(output);
 		return null;

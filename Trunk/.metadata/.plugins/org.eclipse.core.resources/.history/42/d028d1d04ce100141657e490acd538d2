@@ -1,5 +1,0 @@
-package com.team9.finalproject.connectors;
-
-public interface ConnectorInterface {
-
-}
