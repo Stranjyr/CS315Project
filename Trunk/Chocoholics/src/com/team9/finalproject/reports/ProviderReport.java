@@ -1,5 +1,8 @@
 package com.team9.finalproject.reports;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import com.team9.finalproject.dataMembers.DataInterface;
@@ -9,14 +12,23 @@ public class ProviderReport implements ReportGenerator {
 
 	@Override
 	public String RunReport(DataInterface databit, List<Service> servs) {
-		// TODO Auto-generated method stub
-		return null;
+		String report = databit.reportFormat();
+		for(Service s: servs)
+		{
+			report+=s.providerFormat();
+		}
+		return report;
 	}
 
 	@Override
-	public String saveToFile(String f, String Report) {
-		// TODO Auto-generated method stub
-		return null;
+	public String saveToFile(String f, String report) {
+		try {
+			PrintWriter out = new PrintWriter(new File("./reports/"+f));
+			out.write(report);
+			out.close();
+			return "File written successfully";
+		} catch (FileNotFoundException e) {
+			return "Error Writing File";
+		}
 	}
-
 }

@@ -143,7 +143,7 @@ public class DataManager implements Serializable{
 		serviceList.add(new Service(serviceCode, this.serviceDir.get(serviceCode), 
 				serviceDate, recivedDate, providerNumber, 
 				this.findAndCloneProvider(providerNumber).getNumber(),
-				memberNumber, this.findAndCloneMember(memberNumber).getName(), comment));
+				memberNumber, comment));
 	}
 	public String editMember(String id, Member newM)
 	{
