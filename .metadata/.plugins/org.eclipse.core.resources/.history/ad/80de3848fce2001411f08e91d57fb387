@@ -1,0 +1,19 @@
+package com.team9.finalproject.reports;
+
+import java.io.File;
+
+public class MemberReport extends ReportGenerator {
+
+	@Override
+	public String RunReport(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String saveToFile(File f, String Report) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

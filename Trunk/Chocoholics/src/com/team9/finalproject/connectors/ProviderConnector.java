@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map.Entry;
 import java.util.Scanner;
@@ -59,7 +60,7 @@ public class ProviderConnector implements ConnectorInterface{
 	public DataManager loadDataManager() {
 		try
 	      {
-	         FileInputStream fileIn = new FileInputStream("/ChocoDataBase/ChocoData.ser");
+	         FileInputStream fileIn = new FileInputStream("/ChocoData.ser");
 	         ObjectInputStream in = new ObjectInputStream(fileIn);
 	         DataManager temp = (DataManager) in.readObject();
 	         in.close();
@@ -150,14 +151,14 @@ public class ProviderConnector implements ConnectorInterface{
 		{
 			return("Provider number invalid");
 		}
-		if(dm.getDir().get(serviceCode).equals(null))
+		if(dm.getDir().get(serviceCode) == null)
 		{
 			return("Service Code Error: Check Directory");
 		}
 		Date bill;
 		try{
 
-			bill = DateFormat.getDateInstance(DateFormat.SHORT).parse(dateBill);
+			bill = new SimpleDateFormat("MM//dd//yyyy").parse(dateBill);
 		}
 		catch(ParseException p)
 		{
@@ -169,7 +170,7 @@ public class ProviderConnector implements ConnectorInterface{
 		}
 		
 		//Now that all the validation is successful, add the service
-		dm.addService(new Service(serviceCode, bill.toString(), new Date().toString(), provId, memberId, comment));
+		dm.addService(serviceCode, dateBill, new Date().toString(), provId, memberId, comment);
 		
 		return "Billing Successful";
 		

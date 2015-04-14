@@ -1,11 +1,15 @@
 package com.team9.finalproject;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 import com.team9.finalproject.dataMembers.*;
 /**
@@ -26,7 +30,8 @@ public class DataManager implements Serializable{
 	private ArrayList<Service> serviceList;
 	private HashMap<String, String> serviceDir;
 	private HashMap<String, Float> serviceCostMap;
-	private int idIndex;
+	private IdBag memID;
+	private IdBag provID;
 	public DataManager() {
 		super();
 		memberList = new ArrayList<Member>();
@@ -34,17 +39,18 @@ public class DataManager implements Serializable{
 		serviceList = new ArrayList<Service>();
 		serviceDir = new HashMap<String, String>();
 		serviceCostMap = new HashMap<String, Float>();
-		idIndex = 0;
+		setupStaticFields();
+		memID = new IdBag(0, 999999999);
+		provID = new IdBag(0, 999999999);
 		//Load in serviceDir and serviceCostMap
 	}
-	public void incIdIndex()
+	public String getNextMemID()
 	{
-		idIndex++;
-		return;
+		return memID.nextId();
 	}
-	public int getIdIndex()
+	public String getNextProvID()
 	{
-		return idIndex;
+		return provID.nextId();
 	}
 	public int findMember(String id)
 	{
@@ -132,6 +138,13 @@ public class DataManager implements Serializable{
 	{
 		serviceList.add(s);
 	}
+	public void addService(String serviceCode, String serviceDate, String recivedDate, String providerNumber, String memberNumber, String comment)
+	{
+		serviceList.add(new Service(serviceCode, this.serviceDir.get(serviceCode), 
+				serviceDate, recivedDate, providerNumber, 
+				this.findAndCloneProvider(providerNumber).getNumber(),
+				memberNumber, comment));
+	}
 	public String editMember(String id, Member newM)
 	{
 		int memIndex = findMember(id);
@@ -159,7 +172,9 @@ public class DataManager implements Serializable{
 		{
 			return "FAILED: INVALID ID";
 		}
-		providerList.remove(memIndex);
+		memberList.remove(memIndex);
+		memID.freeID(id);
+		
 		return "EDIT COMPLETE";
 	}
 	public String removeProvider(String id)
@@ -170,6 +185,7 @@ public class DataManager implements Serializable{
 			return "FAILED: INVALID ID";
 		}
 		providerList.remove(provIndex);
+		provID.freeID(id);
 		return "EDIT COMPLETE";
 	}
 	public HashMap<String, String> getDir()
@@ -185,7 +201,7 @@ public class DataManager implements Serializable{
 		String s = "";
 		for(Member m: memberList)
 		{
-			s+="Name:: "+m.getName()+"\n --  ID::  "+m.getNumber();
+			s+="Name:: "+m.getName()+" --  ID::  "+m.getNumber()+"\n";
 		}
 		return s;
 	}
@@ -194,7 +210,7 @@ public class DataManager implements Serializable{
 		String s = "";
 		for(User p: providerList)
 		{
-			s+="Name:: "+p.getName()+"\n --  ID::  "+p.getNumber();
+			s+="Name:: "+p.getName()+" --  ID::  "+p.getNumber()+ "\n";
 		}
 		return s;
 	}
@@ -217,5 +233,39 @@ public class DataManager implements Serializable{
 	}
 	
 	
+	/**
+	 * This is a method used to set up static files the first time the code is run
+	 * It has bad cohesion, but this is a necessary element that is rarely used, so
+	 * that is ok.
+	 * 
+	 * 
+	 */
+	private void setupStaticFields()
+	{
+		try{
+			
+			Scanner scan = new Scanner(new File("./dir.dat"));
+			while(scan.hasNext()){
+				String code = scan.next();
+				String name = scan.next();
+				float cost = scan.nextFloat();
+				serviceDir.put(code, name);
+				serviceCostMap.put(code, cost);
+			}
+			scan.close();
+			return;
+			
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+			return;
+		}
+		
+	}
+	
+	
 
 }
+
+

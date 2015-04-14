@@ -198,12 +198,11 @@ public class InteractiveConnector implements ConnectorInterface{
 		//validate city
 		//validate state
 		//validate zip
-		String id = String.format("%09d", dm.getIdIndex());
-		if(id.length()>9)
+		String id = dm.getNextMemID();
+		if(id == null)
 		{
-			return "Out of ids. Please Contact Your Support Center";
+			return "Out of member ids. Please Contact Your Support Center";
 		}
-		dm.incIdIndex();
 		dm.addMember(new Member(name, id, addr, city, state, zip, "Active"));
 		return "Member "+id+" added successfuly";
 	}
@@ -215,12 +214,11 @@ public class InteractiveConnector implements ConnectorInterface{
 		//validate city
 		//validate state
 		//validate zip
-		String id = String.format("%09d", dm.getIdIndex());
-		if(id.length()>9)
+		String id = dm.getNextProvID();
+		if(id == null)
 		{
-			return "Out of ids. Please Contact Your Support Center";
+			return "Out of provider ids. Please Contact Your Support Center";
 		}
-		dm.incIdIndex();
 		dm.addProvider(new User(name, id, addr, city, state, zip));
 		return "Provider "+id+" added successfuly";
 	}
