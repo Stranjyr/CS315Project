@@ -104,7 +104,7 @@ public class ProviderConnector implements ConnectorInterface{
 					String d = scan.next();
 					display("Enter year service was provided as a four digit number");
 					String y = scan.next();
-					display("Enter comment (Leave blank for no comment)");
+					display("Enter comment (- for no comment)");
 					String com = scan.next();
 					display(bill(memberId, provId, serCode, m+"//"+d+"//"+y, com));
 					break;

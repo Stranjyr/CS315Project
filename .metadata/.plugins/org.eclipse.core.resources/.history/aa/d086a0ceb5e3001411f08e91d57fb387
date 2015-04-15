@@ -1,0 +1,322 @@
+package com.team9.finalproject.connectors;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.Scanner;
+
+import com.team9.finalproject.DataManager;
+import com.team9.finalproject.dataMembers.Member;
+import com.team9.finalproject.dataMembers.User;
+
+public class InteractiveConnector implements ConnectorInterface{
+
+	private DataManager dm;
+	private Scanner scan;
+	public InteractiveConnector()
+	{
+		scan = new Scanner(System.in);
+		display(startScreen());
+		dm = loadDataManager();
+		commandLoop();
+		scan.close();
+	}
+	private String startScreen() {
+		String s = "";
+		s+=""+                                                                                             
+				"              ,,                                    ,,                 ,,    ,,                  "+"\n"+
+				"  .g8W0Wbgd `7MM                                  `7MM               `7MM    db                  "+"\n"+ 
+				".dP`     `M   MM                                    MM                 MM                        "+"\n"+
+				"M`           MMpMMMb.  ,pW-Wq.   ,p6-bo   ,pW-Wq.  MMpMMMb.  ,pW-Wq.  MM  `7MM  ,p6-bo  ,pP-Ybd  "+"\n"+
+				"MM            MM    MM 6W     Wb 6M`  OO  6W     Wb MM    MM 6W     Wb MM    MM 6M`  OO  8I   `` "+"\n"+
+				"MM.           MM    MM 8M     M8 8M       8M     M8 MM    MM 8M     M8 MM    MM 8M       `YMMMa. "+"\n"+
+				" Mb.     ,    MM    MM YA.   ,A9 YM.      YA.   ,A9 MM    MM YA.   ,A9 MM    MM YM.      L.   I8 "+"\n"+
+				"   =bmmmd`  .JMML  JMML. Ybmd9    YMbmd     Ybmd9 .JMML  JMML. Ybmd9 .JMML..JMML.YMbmd   M9mmmP` "+"\n";
+                                                                                                                                                                                     
+		s+="*************************************\n"
+		  +"**** WELCOME OPERATOR ***************\n"
+		  +"*************************************\n"
+		  +"**** CHOCOHOLICS DATAMANAGER 1.0 ****\n"
+		  +"**** A NEW PARADIGM IN CHOCOLATE ****\n"
+		  +"*************************************\n"
+		  +"**** COMMANDS ***********************\n"
+		  +"**** H == HELP - Shows Commands******\n"
+		  +"**** A == ADD - Add new Data*********\n"
+		  +"**** E == EDIT - Edit data***********\n"
+		  +"**** D == DELETE - Delete data*******\n"
+		  +"**** R == REPORT - Run Reports*******\n"
+		  +"**** P == PROVIDERS - List Providers*\n"
+		  +"**** M == MEMBERS - List Members*****\n"
+		  +"**** Q == QUIT - Quits***************\n"
+		  +"*************************************\n"
+		  +"*************************************\n";
+		
+		  
+		return s;
+	}
+	@Override
+	public DataManager loadDataManager() {
+		try
+	      {
+	         FileInputStream fileIn = new FileInputStream("/ChocoData.ser");
+	         ObjectInputStream in = new ObjectInputStream(fileIn);
+	         DataManager temp = (DataManager) in.readObject();
+	         in.close();
+	         fileIn.close();
+	         return temp;
+	      }catch(IOException i)
+	      {
+	         display("load failed");
+	         return new DataManager();
+	      }catch(ClassNotFoundException c)
+	      {
+	         
+	    	  display("load failed");
+	         return new DataManager();
+	      }
+		
+	}
+
+	@Override
+	public String commandLoop() {
+		
+		while(true)
+		{
+			display("Next Command?");
+			String command = scan.nextLine();
+			String id, name, addr, city, state, z;
+			switch(command.toUpperCase().charAt(0))
+			{
+				case 'H':
+					display(help());
+					break;
+				case 'A':
+					display("Add _M_ember, _P_rovider, or _C_ancel?");
+					switch(scan.nextLine().toUpperCase().charAt(0))
+					{
+						case 'M':
+							display("Enter Member name");
+							name = scan.nextLine();
+							display("Enter member address");
+							addr = scan.nextLine();
+							display("Enter city");
+							city = scan.nextLine();
+							display("Enter state");
+							state = scan.nextLine();
+							display("Enter zip");
+							z = scan.nextLine();
+							display(addMember(name, addr, city, state, z));
+							break;
+						case 'P':
+							display("Enter Provider name");
+							name = scan.nextLine();
+							display("Enter member address");
+							addr = scan.nextLine();
+							display("Enter city");
+							city = scan.nextLine();
+							display("Enter state");
+							state = scan.nextLine();
+							display("Enter zip");
+							z = scan.nextLine();
+							display(addProvider(name, addr, city, state, z));
+							break;
+						default: break;
+					}
+					break;
+				case 'E':
+					display("Edit _M_ember, _P_rovider, or _C_ancel?");
+					char editWhat;
+					String val;
+					switch(scan.nextLine().toUpperCase().charAt(0))
+					{
+						case 'M':
+							display("Enter Member ID");
+							id = scan.nextLine();
+							display("Do you want to change the\n"
+									+ "_n_ame, _a_ddress, _c_ity, _s_tate, _z_ip, or s_t_atus?");
+							editWhat = scan.nextLine().toUpperCase().charAt(0);
+							display("Enter new Value");
+							val = scan.nextLine();
+							display(editMember(id, editWhat, val));
+							break;
+						case 'P':
+							display("Enter Provider ID");
+							id = scan.nextLine();
+							display("Do you want to change the\n"
+									+ "_n_ame, _a_ddress, _c_ity, _s_tate, or _z_ip");
+							editWhat = scan.nextLine().toUpperCase().charAt(0);
+							display("Enter new Value");
+							val = scan.nextLine();
+							display(editProvider(id, editWhat, val));
+							break;
+						default: break;
+					}
+					break;
+				case 'D':
+					display("Delete a _M_ember, _P_rovider, or _C_ancel?");
+					switch(scan.nextLine().toUpperCase().charAt(0))
+					{
+						case 'M':
+							display("Enter Member ID");
+							id = scan.nextLine();
+							display(dm.removeMember(id));
+							break;
+						case 'P':
+							display("Enter Provider ID");
+							id = scan.nextLine();
+							display(dm.removeProvider(id));
+							break;
+						default: break;
+					}
+					break;
+				case 'R':
+					display("Not yet Implemented");
+					break;
+				case 'P':
+					display(dm.listProviders());
+					break;
+				case 'M':
+					display(dm.listMembers());
+					break;
+				case 'Q':
+					//This does not break, it returns to exit the loop
+					display(quit());
+					return "Exited";
+				default:
+					display("Invalid Command");
+					break;	
+			}
+			
+		}
+	}
+	
+	public String addMember(String name, String addr, String city, String state, String zip)
+	{
+		//Todo
+		//Validate name
+		//Validate addr
+		//validate city
+		//validate state
+		//validate zip
+		String id = dm.getNextMemID();
+		if(id == null)
+		{
+			return "Out of member ids. Please Contact Your Support Center";
+		}
+		dm.addMember(new Member(name, id, addr, city, state, zip, "Active"));
+		return "Member "+id+" added successfuly";
+	}
+	public String addProvider(String name, String addr, String city, String state, String zip)
+	{
+		//Todo
+		//Validate name
+		//Validate addr
+		//validate city
+		//validate state
+		//validate zip
+		String id = dm.getNextProvID();
+		if(id == null)
+		{
+			return "Out of provider ids. Please Contact Your Support Center";
+		}
+		dm.addProvider(new User(name, id, addr, city, state, zip));
+		return "Provider "+id+" added successfuly";
+	}
+	public String editMember(String id, char eW, String val)
+	{
+		if(dm.findMember(id) == -1)
+		{
+			return "Invalid Member ID";
+		}
+		Member m = dm.findAndCloneMember(id);
+		//TODO 
+		//Validate val
+		//in switch/case
+		switch(eW)
+		{
+			case 'N':
+				m.setName(val);
+				break;
+			case 'A':
+				m.setAddress(val);
+				break;
+			case 'C':
+				m.setCity(val);
+				break;
+			case 'S':
+				m.setState(val);
+			case 'Z':
+				m.setZip(val);
+			case 'T':
+				m.setStatus(val);
+			default: return "ERROR: Invalid Edit Field";
+		}
+		return dm.editMember(id, m);
+	}
+	
+	public String editProvider(String id, char eW, String val)
+	{
+		if(dm.findProvider(id) == -1)
+		{
+			return "Invalid Member ID";
+		}
+		User m = dm.findAndCloneProvider(id);
+		//TODO 
+		//Validate val
+		//in switch/case
+		switch(eW)
+		{
+			case 'N':
+				m.setName(val);
+				break;
+			case 'A':
+				m.setAddress(val);
+				break;
+			case 'C':
+				m.setCity(val);
+				break;
+			case 'S':
+				m.setState(val);
+			case 'Z':
+				m.setZip(val);
+			default: return "ERROR: Invalid Edit Field";
+		}
+		return dm.editProvider(id, m);
+	}
+	
+	public String help()
+	{
+		String s = "**** COMMANDS ***********************\n"
+				  +"**** H == HELP - Shows Commands******\n"
+				  +"**** A == ADD - Add new Data*********\n"
+				  +"**** E == EDIT - Edit data***********\n"
+				  +"**** D == DELETE - Delete data*******\n"
+				  +"**** R == REPORT - Run Reports*******\n"
+				  +"**** Q == QUIT - Quits***************\n"
+				  +"*************************************\n"
+				  +"*************************************\n";
+		return(s);
+	}
+
+	@Override
+	public String quit() {
+		return dm.save()+"\nExiting";
+	}
+
+	
+	/**
+	 * Since this is a Console Display,
+	 * This method is just println();
+	 * If we later make a GUI,
+	 * This method would write info to
+	 * the screen
+	 * 
+	 * @param output String to be displayed
+	 */
+	@Override
+	public String display(String output) {
+		System.out.println(output);
+		return null;
+	}
+
+}

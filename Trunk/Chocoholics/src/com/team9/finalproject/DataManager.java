@@ -73,6 +73,11 @@ public class DataManager implements Serializable{
 		}
 		return -1;
 	}
+	/**
+	 * Probably a better way to do this
+	 * @param id
+	 * @return
+	 */
 	public Member findAndCloneMember(String id)
 	{
 		for(Member m : memberList)
@@ -141,8 +146,9 @@ public class DataManager implements Serializable{
 	public void addService(String serviceCode, String serviceDate, String recivedDate, String providerNumber, String memberNumber, String comment)
 	{
 		serviceList.add(new Service(serviceCode, this.serviceDir.get(serviceCode), 
+				this.serviceCostMap.get(serviceCode).toString(),
 				serviceDate, recivedDate, providerNumber, 
-				this.findAndCloneProvider(providerNumber).getNumber(),
+				this.findAndCloneProvider(providerNumber).getName(),
 				memberNumber, this.findAndCloneMember(memberNumber).getName(), comment));
 	}
 	public String editMember(String id, Member newM)
@@ -204,6 +210,25 @@ public class DataManager implements Serializable{
 			s+="Name:: "+m.getName()+" --  ID::  "+m.getNumber()+"\n";
 		}
 		return s;
+	}
+	//for reports
+	public ArrayList<String> listMemberIds()
+	{
+		ArrayList<String> ids = new ArrayList<String>();
+		for(Member m:memberList)
+		{
+			ids.add(m.getNumber());
+		}
+		return ids;
+	}
+	public ArrayList<String> listProviderIds()
+	{
+		ArrayList<String> ids = new ArrayList<String>();
+		for(User m: providerList)
+		{
+			ids.add(m.getNumber());
+		}
+		return ids;
 	}
 	public String listProviders()
 	{

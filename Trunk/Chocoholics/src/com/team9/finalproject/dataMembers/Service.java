@@ -6,6 +6,7 @@ public class Service implements DataInterface, Serializable{
 
 	private String serviceCode;
 	private String serviceName;
+	private String fee;
 	private String serviceDate;
 	private String recivedDate;
 	private String providerNumber;
@@ -14,11 +15,12 @@ public class Service implements DataInterface, Serializable{
 	private String memberName;
 	private String comment;
 	
-	public Service(String serviceCode, String serviceName, String sericeDate, String recivedDate,
+	public Service(String serviceCode, String serviceName, String fee, String sericeDate, String recivedDate,
 			String providerNumber, String providerName, String memberNumber, String memberName, String comment) {
 		super();
 		this.serviceCode = serviceCode;
 		this.serviceName = serviceName;
+		this.fee = fee;
 		this.serviceDate = sericeDate;
 		this.recivedDate = recivedDate;
 		this.providerNumber = providerNumber;
@@ -91,6 +93,23 @@ public class Service implements DataInterface, Serializable{
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
+	
+	
+	public String getFee() {
+		return fee;
+	}
+
+	public void setFee(String fee) {
+		this.fee = fee;
+	}
+
+	public String getMemberName() {
+		return memberName;
+	}
+
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
+	}
 
 	@Override
 	public String reportFormat() {
@@ -106,8 +125,8 @@ public class Service implements DataInterface, Serializable{
 	// needs to be finished
 	public String providerFormat()
 	{
-		return String.format("Service Code: %s\nService Date: %s\nRecived Date: %s\nProvider Number: %s\nMember Number: %s\n"
-				,serviceCode, serviceDate, recivedDate, providerNumber, memberNumber);
+		return String.format("Service Code: %s\nService Date: %s\nFee Billed%s\nRecived Date: %s\nMember Number: %s\nMember Name%s\n"
+				,serviceCode, serviceDate, fee, recivedDate, memberNumber, memberName);
 	}
 
 	

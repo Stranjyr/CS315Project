@@ -2,6 +2,7 @@ package com.team9.finalproject.reports;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
@@ -15,6 +16,7 @@ public class MemberReport implements ReportGenerator {
 		String report = databit.reportFormat();
 		for(Service s: servs)
 		{
+			report+="*************************\n";
 			report+=s.memberFormat();
 		}
 		return report;
@@ -23,11 +25,20 @@ public class MemberReport implements ReportGenerator {
 	@Override
 	public String saveToFile(String f, String report) {
 		try {
-			PrintWriter out = new PrintWriter(new File("./reports/"+f));
+			System.out.println(f+".dat");
+			File file = new File("reports/member/"+f+".dat");
+			System.out.println(file.getAbsolutePath());
+			file.mkdirs();
+			file.createNewFile();
+			PrintWriter out = new PrintWriter(file);
 			out.write(report);
 			out.close();
 			return "File written successfully";
 		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return "Error Writing File";
+		} catch (IOException e) {
+			e.printStackTrace();
 			return "Error Writing File";
 		}
 	}
