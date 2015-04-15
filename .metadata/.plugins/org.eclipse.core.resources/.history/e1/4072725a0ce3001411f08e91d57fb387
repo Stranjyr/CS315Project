@@ -13,15 +13,14 @@ import com.team9.finalproject.dataMembers.User;
 /**
  * TODO
  * Interactive Connector needs
- * 		New Get methods - Ben
- * 		Better Editing - Austin
- * 		Delete Validation - Joe
- * 		Edit Validation - Austin
- * 		Reports Work - William
+ * 		New Get methods
+ * 		Better Editing
+ * 		Validation
+ * 		Reports Work
  * 
  * Provider Connector
- * 		Better Billing - Justin
- * 		Check validation- Justin
+ * 		Better Billing
+ * 		Check validation
  * 
  * 
  * @author William

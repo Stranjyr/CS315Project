@@ -9,24 +9,6 @@ import com.team9.finalproject.connectors.ProviderConnector;
 import com.team9.finalproject.dataMembers.Member;
 import com.team9.finalproject.dataMembers.User;
 
-
-/**
- * TODO
- * Interactive Connector needs
- * 		New Get methods - Ben
- * 		Better Editing - Austin
- * 		Delete Validation - Joe
- * 		Edit Validation - Austin
- * 		Reports Work - William
- * 
- * Provider Connector
- * 		Better Billing - Justin
- * 		Check validation- Justin
- * 
- * 
- * @author William
- *
- */
 public class ChocoholicsMain {
 
 	public static void main(String[] args) {
