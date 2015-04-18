@@ -2,7 +2,7 @@ package com.team9.finalproject.dataMembers;
 /**
  * 
  * @author wchampton
- * Interface that all elements of data will implement
+ * Interface that all elements of data will implement.
  */
 public interface DataInterface {
 	/**

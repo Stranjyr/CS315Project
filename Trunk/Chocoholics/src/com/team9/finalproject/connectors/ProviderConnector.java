@@ -18,6 +18,9 @@ public class ProviderConnector implements ConnectorInterface{
 	private DataManager dm;
 	Scanner scan;  // Used to get input from user
 	
+	/*
+	 * Constructor
+	 */
 	public ProviderConnector()
 	{
 		scan = new Scanner(System.in);
@@ -26,6 +29,13 @@ public class ProviderConnector implements ConnectorInterface{
 		commandLoop();
 		scan.close();
 	}
+	
+	/**
+	 * 
+	 * This is a title screen that shows at the start. It also includes a menu with
+	 * the possible commands.
+	 * @return String: the string with the title 
+	 */
 	private String startScreen() {
 		String s = "";
 		s+=""+                                                                                             
@@ -57,12 +67,16 @@ public class ProviderConnector implements ConnectorInterface{
 		return s;
 	}
 	/**
-	 * 
+	 * Creates the data manager. First, it attempts to load it from a file which stores
+	 * a serialized version of the manager. If the file is not found or cis correupted,
+	 * a new data manager is created. 
+	 * @return DataManager
 	 */
 	@Override
 	public DataManager loadDataManager() {
 		try
 	      {
+			// Try to load the manager from file
 	         FileInputStream fileIn = new FileInputStream("/ChocoData.ser");
 	         ObjectInputStream in = new ObjectInputStream(fileIn);
 	         DataManager temp = (DataManager) in.readObject();
@@ -81,7 +95,10 @@ public class ProviderConnector implements ConnectorInterface{
 	      }
 		
 	}
-
+	
+	/**
+	 * Handles all user interaction. All IO is accomplished through the command line.
+	 */
 	@Override
 	public String commandLoop() {
 		
@@ -164,6 +181,10 @@ public class ProviderConnector implements ConnectorInterface{
 			
 		}
 	}
+	/**
+	 * The help menu. Displays possible commands.
+	 * @return String: the help menu
+	 */
 	public String help()
 	{
 		String s = "**** COMMANDS ***********************\n"
@@ -176,6 +197,17 @@ public class ProviderConnector implements ConnectorInterface{
 				  +"*************************************\n"; 
 		return(s);
 	}
+	/**
+	 * Add a service bill to the data manager. It first validates all data, 
+	 * and returns an error message if needed. If all data is valid, the bill
+	 * is added to the data manager and returns 'active'.
+	 * @param memberId
+	 * @param provId
+	 * @param serviceCode
+	 * @param dateBill
+	 * @param comment
+	 * @return String: If error, returns description of the error. If validated, returns 'active'
+	 */
 	public String bill(String memberId, String provId, String serviceCode, String dateBill, String comment)
 	{
 		
@@ -213,6 +245,11 @@ public class ProviderConnector implements ConnectorInterface{
 		return "Billing Successful";
 		
 	}
+	/**
+	 * Checks if the given member ID corresponds to an existing member.
+	 * @param memberId
+	 * @return String:  If error, returns description of the error. If validated, returns 'active'
+	 */
 	public String validate(String memberId)
 	{
 		String status = dm.validateMember(memberId);
@@ -223,6 +260,10 @@ public class ProviderConnector implements ConnectorInterface{
 		}
 		return status;
 	}
+	/**
+	 * Returns a directory with all available services.
+	 * @return String: the services
+	 */
 	public String getDirectory()
 	{
 		String d = "";
@@ -234,6 +275,9 @@ public class ProviderConnector implements ConnectorInterface{
 	}
 
 	@Override
+	/**
+	 * Tells data manager to save and then exists.
+	 */
 	public String quit() {
 		return dm.save()+"\nExiting";
 	}

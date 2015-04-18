@@ -2,7 +2,12 @@ package com.team9.finalproject.dataMembers;
 
 import java.io.Serializable;
 import java.util.ArrayDeque;
-
+/**
+ * This class keeps an list of sequential id numbers and can give the next valid number. Class will also return an unused
+ * id number back to the bag.
+ * 
+ *
+ */
 public class IdBag implements Serializable
 {
 	private int index;
@@ -15,6 +20,12 @@ public class IdBag implements Serializable
 		stack = new ArrayDeque<String>();
 		stack.push(String.format("%09d", index));
 	}
+	
+	
+	/**
+	 * This method will return the next available ID number.
+	 * @return
+	 */
 	
 	public String nextId()
 	{
