@@ -283,11 +283,10 @@ public class InteractiveConnector implements ConnectorInterface{
 		}
 	}
 	/**
-	 * 
+	 * Creates and saves to disk reports for each member
+	 * Should be called every Friday
 	 */
 	private void runBatchReports() {
-	//Creates and saves to disk reports for each member
-	//Should be called every Friday
 		ReportGenerator r;
 		for(String i: dm.listMemberIds())
 		{
