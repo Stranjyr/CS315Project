@@ -411,7 +411,11 @@ public class InteractiveConnector implements ConnectorInterface{
 			contVar = scan.nextLine().toUpperCase().charAt(0);
 		}
 		
-		
+		display("Do you want to save changes? Y\n");
+		if(scan.nextLine().toUpperCase().charAt(0) !='Y')
+		{
+			return "Cancled";
+		}
 		return dm.editMember(id, m);
 	}
 	
