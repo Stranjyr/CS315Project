@@ -26,8 +26,14 @@ public class InteractiveConnectorTest {
 	@After
 	public void tearDown() throws Exception {
 	}
+<<<<<<< HEAD
+=======
 
+>>>>>>> 44a0c4da5374cd5ad8d490d61dd3786b3d220807
 	
+	/*
+	 * Begin tests for InteractiveConnector.AddMember
+	 */
 	@Test
 	public void testAddMember_ShouldFailName() {
 		assertEquals(
@@ -38,7 +44,7 @@ public class InteractiveConnectorTest {
 	public void testAddMember_ShouldFailAddress() {
 		assertEquals(
 				"Address must be under 25 chars", 
-				interact.addMember("John Doe", "123456789 Longstreetname Street", "Anytown", "AL", "12345"));
+				interact.addMember("John Doe", "123456789 Longassstreetname Street", "Anytown", "AL", "12345"));
 	}
 	@Test
 	public void testAddMember_ShouldFailCity() {

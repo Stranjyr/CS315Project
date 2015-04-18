@@ -35,6 +35,15 @@ public class ProviderConnector implements ConnectorInterface{
 	}
 	
 	/**
+	 * For Unit Testing only
+	 */
+	public ProviderConnector(DataManager d)
+	{
+		
+		dm = d;
+	}
+	
+	/**
 	 * This is a title screen that shows at the start. It also includes a menu with
 	 * the possible commands.
 	 * @return String: the string with the title 
