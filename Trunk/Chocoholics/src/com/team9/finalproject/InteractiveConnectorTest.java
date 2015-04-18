@@ -27,10 +27,6 @@ public class InteractiveConnectorTest {
 	public void tearDown() throws Exception {
 	}
 
-	/*@Test
-	public void test() {
-		fail("Not yet implemented");
-	}*/
 	
 	@Test
 	public void testAddMember_ShouldFailName() {
@@ -65,8 +61,46 @@ public class InteractiveConnectorTest {
 	@Test
 	public void testAddMember_ShouldSucceed() {
 		assertEquals(
-				"Member 000000020 added successfuly", 
+				"Member 000000002 added successfuly", 
 				interact.addMember("John Doe", "123 First St", "Anytown", "AL", "12345"));
+	}
+	
+	//Provider Add Tests
+	@Test
+	public void testAddProvider_ShouldFailName() {
+		assertEquals(
+				"Name must be under 25 chars", 
+				interact.addProvider("Reallylongfirstname Reallylonglastname", "123 First St", "Anytown", "AL", "12345"));
+	}
+	@Test
+	public void testAddProvider_ShouldFailAddress() {
+		assertEquals(
+				"Address must be under 25 chars", 
+				interact.addProvider("John Doe", "123456789 Longstreetname Street", "Anytown", "AL", "12345"));
+	}
+	@Test
+	public void testAddProvider_ShouldFailCity() {
+		assertEquals(
+				"City must be under 14 chars",
+				interact.addProvider("John Doe", "123 First St", "Longasscityname", "AL", "12345"));
+	}
+	@Test
+	public void testAddProvider_ShouldFailState() {
+		assertEquals(
+				"State must have 2 chars", 
+				interact.addProvider("John Doe", "123 First St", "Anytown", "ABC", "12345"));
+	}
+	@Test
+	public void testAddProvider_ShouldFailZip() {
+		assertEquals(
+				"Zip must have 5 chars", 
+				interact.addProvider("John Doe", "123 First St", "Anytown", "AL", "123456"));
+	}
+	@Test
+	public void testAddProvider_ShouldSucceed() {
+		assertEquals(
+				"Provider 000000002 added successfuly", 
+				interact.addProvider("John Doe", "123 First St", "Anytown", "AL", "12345"));
 	}
 	@Test
 	public void testgetMember_ShouldFail() {
@@ -96,39 +130,10 @@ public class InteractiveConnectorTest {
 	public void seed()
 	{
 		dm = new DataManager();
-		String[] fn = {"John", "Sally", "Jill", "Kreig", "Jake", "Neil", "Caroline"};
-		String[] ln = {"Smith", "Doe", "Baker", "Forth", "Thomson", "Bekensdale", "Dale"};
-		String[] StreetName = {"Madison", "1st", "Main", "18th", "Brook", "Mayfield"};
-		String[] streetType = {"Ln", "Dr", "Ave", "St", "Way", "Circle"};
-		String[] town = {"Benbrook", "Tuscaloosa", "Brekenridge", "Auburn", "Dallas"};
-		String[] st = {"Tx", "Al", "Az", "Ms", "Wy", "Nm", "Ak"};
-		//Seed Some Members
-		for(int i = 0; i<20; i++)
-		{
-			Random r = new Random();
-			String name = fn[r.nextInt(fn.length-1)]+" "+ln[r.nextInt(ln.length-1)];
-			String addr = r.nextInt(5000) +" "+StreetName[r.nextInt(StreetName.length-1)]+" "+
-					streetType[r.nextInt(streetType.length-1)];
-			String city = town[r.nextInt(town.length-1)];
-			String state = st[r.nextInt(st.length-1)];
-			String status = r.nextInt(10000)%7 == 0?"Suspended":"Active";
-			dm.addMember(new Member(name, dm.getNextMemID(),
-					addr, city,state, String.format("%05d", r.nextInt(99999)), status));
-		}
-		//Seed Some Providers
-		for(int i = 0; i<20; i++)
-		{
-			Random r = new Random();
-			String name = town[r.nextInt(town.length-1)]+" "+fn[r.nextInt(fn.length-1)];
-			String addr = r.nextInt(5000) +" "+StreetName[r.nextInt(StreetName.length-1)]+" "+
-					streetType[r.nextInt(streetType.length-1)];
-			String city = ln[r.nextInt(ln.length-1)];
-			String state = st[r.nextInt(st.length-1)];
-			dm.addProvider(new User(name, dm.getNextProvID(),
-					addr, city,state, String.format("%05d", r.nextInt(99999))));
-
-		}
-		//Add services to member 0 from provider 0;
+		dm.addMember(new Member( "John Doe", dm.getNextMemID(), "123 First St", "Anytown", "AL", "12345", "Active"));
+		dm.addMember(new Member( "John Doe", dm.getNextMemID(), "123 First St", "Anytown", "AL", "12345", "Active"));
+		dm.addProvider(new User( "John Doe", dm.getNextProvID(), "123 First St", "Anytown", "AL", "12345"));
+		dm.addProvider(new User( "John Doe", dm.getNextProvID(), "123 First St", "Anytown", "AL", "12345"));
 		for(int i = 0; i<20; i++)
 		{
 			dm.addService("000000", "1/1/2015", "1/"+i+"/2015", "000000000", "000000000", "Service " + i);
