@@ -75,7 +75,7 @@ public class User implements DataInterface, Serializable{
 	@Override
 	public String reportFormat() {
 		String report = "";
-		report = String.format("Name: %s\nNumber: %s\nAddress: %s\nCity: %s\nState: %s\nZip: %s\n", 
+		report = String.format("Name: %s\nNumber: %s\nAddress: %s\nCity: %s\nState: \nZip: %s\n", 
 				name, number, address, city, state, zip);
 		return report;
 	}

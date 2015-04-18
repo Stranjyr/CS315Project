@@ -106,7 +106,7 @@ public class ProviderConnector implements ConnectorInterface{
 					String y = scan.next();
 					display("Enter comment (- for no comment)");
 					String com = scan.next();
-					display(bill(memberId, provId, serCode, m+"/"+d+"/"+y, com));
+					display(bill(memberId, provId, serCode, m+"//"+d+"//"+y, com));
 					break;
 				case 'V':
 					display("Enter Member ID to validate");

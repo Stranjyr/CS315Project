@@ -15,7 +15,6 @@ public class ProviderReport implements ReportGenerator {
 		float fee = 0f;
 		int count = 0;
 		String report = databit.reportFormat();
-		report+="\nServices\n";
 		for(Service s: servs)
 		{
 			report+="*************************\n";
@@ -32,8 +31,8 @@ public class ProviderReport implements ReportGenerator {
 	@Override
 	public String saveToFile(String f, String report) {
 		try {
-			File file = new File("./reports/provider/"+f+".dat");
-			file.getParentFile().mkdirs();
+			File file = new File("./reports/provider/"+f);
+			file.mkdirs();
 			PrintWriter out = new PrintWriter(file);
 			out.write(report);
 			out.close();

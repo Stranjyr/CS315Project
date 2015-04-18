@@ -127,7 +127,7 @@ public class Service implements DataInterface, Serializable{
 	public String providerFormat()
 	{
 		String actualFee = NumberFormat.getCurrencyInstance().format(Float.parseFloat(fee));
-		return String.format("Service Code: %s\nService Date: %s\nFee Billed: $%s\nReceived Date: %s\nMember Number: %s\nMember Name%s\n"
+		return String.format("Service Code: %s\nService Date: %s\nFee Billed: %s\nRecived Date: %s\nMember Number: %s\nMember Name%s\n"
 				,serviceCode, serviceDate, actualFee, recivedDate, memberNumber, memberName);
 	}
 

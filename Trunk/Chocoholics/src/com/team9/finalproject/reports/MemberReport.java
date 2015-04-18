@@ -14,6 +14,7 @@ public class MemberReport implements ReportGenerator {
 	@Override
 	public String RunReport(DataInterface databit, List<Service> servs) {
 		String report = databit.reportFormat();
+		report+="\nServices\n";
 		for(Service s: servs)
 		{
 			report+="*************************\n";
@@ -28,7 +29,7 @@ public class MemberReport implements ReportGenerator {
 			System.out.println(f+".dat");
 			File file = new File("reports/member/"+f+".dat");
 			System.out.println(file.getAbsolutePath());
-			file.mkdirs();
+			file.getParentFile().mkdirs();
 			file.createNewFile();
 			PrintWriter out = new PrintWriter(file);
 			out.write(report);
