@@ -68,7 +68,30 @@ public class InteractiveConnectorTest {
 				"Member 000000020 added successfuly", 
 				interact.addMember("John Doe", "123 First St", "Anytown", "AL", "12345"));
 	}
-	
+	@Test
+	public void testgetMember_ShouldFail() {
+		assertEquals(
+				"Member does not exist.",
+				interact.getMember("00000015"));
+	}
+	@Test
+	public void testgetMember_ShouldSucceed() {
+		assertEquals(
+				"Member Name: Jake Baker\nMember Address:4372 Madison Dr\nMember City:Benbrook\nMember State:Nm\nMember Zip Code:29569",
+				interact.getMember("000000000"));
+	}
+	@Test
+	public void testgetProvider_ShouldFail() {
+		assertEquals(
+				"Provider does not exist.",
+				interact.getProvider("00000015"));
+	}
+	@Test
+	public void testgetProvider_ShouldSucceed() {
+		assertEquals(
+				"Provider ID 000000000 gotten successfuly",
+				interact.getProvider("000000000"));
+	}
 	
 	public void seed()
 	{
