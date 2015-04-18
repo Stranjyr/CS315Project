@@ -65,7 +65,7 @@ public class InteractiveConnectorTest {
 	@Test
 	public void testAddMember_ShouldSucceed() {
 		assertEquals(
-				"Member 000000020 added successfuly", 
+				"Member 000000002 added successfuly", 
 				interact.addMember("John Doe", "123 First St", "Anytown", "AL", "12345"));
 	}
 	
@@ -73,39 +73,10 @@ public class InteractiveConnectorTest {
 	public void seed()
 	{
 		dm = new DataManager();
-		String[] fn = {"John", "Sally", "Jill", "Kreig", "Jake", "Neil", "Caroline"};
-		String[] ln = {"Smith", "Doe", "Baker", "Forth", "Thomson", "Bekensdale", "Dale"};
-		String[] StreetName = {"Madison", "1st", "Main", "18th", "Brook", "Mayfield"};
-		String[] streetType = {"Ln", "Dr", "Ave", "St", "Way", "Circle"};
-		String[] town = {"Benbrook", "Tuscaloosa", "Brekenridge", "Auburn", "Dallas"};
-		String[] st = {"Tx", "Al", "Az", "Ms", "Wy", "Nm", "Ak"};
-		//Seed Some Members
-		for(int i = 0; i<20; i++)
-		{
-			Random r = new Random();
-			String name = fn[r.nextInt(fn.length-1)]+" "+ln[r.nextInt(ln.length-1)];
-			String addr = r.nextInt(5000) +" "+StreetName[r.nextInt(StreetName.length-1)]+" "+
-					streetType[r.nextInt(streetType.length-1)];
-			String city = town[r.nextInt(town.length-1)];
-			String state = st[r.nextInt(st.length-1)];
-			String status = r.nextInt(10000)%7 == 0?"Suspended":"Active";
-			dm.addMember(new Member(name, dm.getNextMemID(),
-					addr, city,state, String.format("%05d", r.nextInt(99999)), status));
-		}
-		//Seed Some Providers
-		for(int i = 0; i<20; i++)
-		{
-			Random r = new Random();
-			String name = town[r.nextInt(town.length-1)]+" "+fn[r.nextInt(fn.length-1)];
-			String addr = r.nextInt(5000) +" "+StreetName[r.nextInt(StreetName.length-1)]+" "+
-					streetType[r.nextInt(streetType.length-1)];
-			String city = ln[r.nextInt(ln.length-1)];
-			String state = st[r.nextInt(st.length-1)];
-			dm.addProvider(new User(name, dm.getNextProvID(),
-					addr, city,state, String.format("%05d", r.nextInt(99999))));
-
-		}
-		//Add services to member 0 from provider 0;
+		dm.addMember(new Member( "John Doe", dm.getNextMemID(), "123 First St", "Anytown", "AL", "12345", "Active"));
+		dm.addMember(new Member( "John Doe", dm.getNextMemID(), "123 First St", "Anytown", "AL", "12345", "Active"));
+		dm.addProvider(new User( "John Doe", dm.getNextProvID(), "123 First St", "Anytown", "AL", "12345"));
+		dm.addProvider(new User( "John Doe", dm.getNextProvID(), "123 First St", "Anytown", "AL", "12345"));
 		for(int i = 0; i<20; i++)
 		{
 			dm.addService("000000", "1/1/2015", "1/"+i+"/2015", "000000000", "000000000", "Service " + i);
