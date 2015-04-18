@@ -34,6 +34,14 @@ public class InteractiveConnector implements ConnectorInterface{
 		commandLoop();
 		scan.close();
 	}
+	/**
+	 * For Unit Testing only
+	 */
+	public InteractiveConnector(DataManager d)
+	{
+		
+		dm = d;
+	}
 	
 	/**
 	 * Creates message shown at the start of Interactive Mode
