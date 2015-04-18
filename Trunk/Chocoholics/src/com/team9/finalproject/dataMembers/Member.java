@@ -1,7 +1,11 @@
 package com.team9.finalproject.dataMembers;
 
 import java.io.Serializable;
-
+/**
+ * 
+ * 
+ *This class is a storage medium for data associated with a  particular member.
+ */
 public class Member extends User implements DataInterface, Serializable{
 
 	private String status;
