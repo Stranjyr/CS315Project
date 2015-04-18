@@ -349,13 +349,16 @@ public class DataManager implements Serializable{
 		return s;
 	}
 	/**
-	 * 
-	 * @return
+	 * This method serializd the current instance of this class, and saves it to
+	 * "/ChocoData.ser". This method should be called every time you destruct
+	 * a DataManager. 
+	 * @return status - Returns "Data is saved in /ChocoData.ser" if save worked
 	 */
 	public String save()
 	{
 		try
 	      {
+			//Serialize the Class, and save to file
 	         FileOutputStream fileOut =
 	         new FileOutputStream("/ChocoData.ser");
 	         ObjectOutputStream out = new ObjectOutputStream(fileOut);
@@ -372,8 +375,9 @@ public class DataManager implements Serializable{
 	
 	
 	/**
-	 * This is a method used to set up static files the first time the code is run
-	 * It has bad cohesion, but this is a necessary element that is rarely used, so
+	 * This is a method used to set up static filesLists the first time the code is run.
+	 * Those are currently the serviceDirectory and the serverCostMap.
+	 * Note - It has bad cohesion, but this is a necessary element that is rarely used, so
 	 * that is ok.
 	 */
 	private void setupStaticFields()
