@@ -158,7 +158,7 @@ public class DataManager implements Serializable{
 		{
 			return "FAILED: INVALID ID";
 		}
-		providerList.set(memIndex, newM);
+		memberList.set(memIndex, newM);
 		return "EDIT COMPLETE";
 	}
 	public String editProvider(String id, User newP)
