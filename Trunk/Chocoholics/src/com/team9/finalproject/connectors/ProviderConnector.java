@@ -13,12 +13,16 @@ import java.util.Scanner;
 import com.team9.finalproject.DataManager;
 import com.team9.finalproject.dataMembers.Service;
 
+/**
+ * Connects providers to the data manager; uses the command line for IO.
+ * @author William Hampton
+ */
 public class ProviderConnector implements ConnectorInterface{
 
 	private DataManager dm;
 	Scanner scan;  // Used to get input from user
 	
-	/*
+	/**
 	 * Constructor
 	 */
 	public ProviderConnector()
@@ -31,7 +35,6 @@ public class ProviderConnector implements ConnectorInterface{
 	}
 	
 	/**
-	 * 
 	 * This is a title screen that shows at the start. It also includes a menu with
 	 * the possible commands.
 	 * @return String: the string with the title 
