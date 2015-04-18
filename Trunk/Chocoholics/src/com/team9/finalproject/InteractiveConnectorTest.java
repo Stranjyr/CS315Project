@@ -27,11 +27,46 @@ public class InteractiveConnectorTest {
 	public void tearDown() throws Exception {
 	}
 
-	
-	
-	@Test
+	/*@Test
 	public void test() {
 		fail("Not yet implemented");
+	}*/
+	
+	@Test
+	public void testAddMember_ShouldFailName() {
+		assertEquals(
+				"Name must be under 25 chars", 
+				interact.addMember("Reallylongfirstname Reallylonglastname", "123 First St", "Anytown", "AL", "12345"));
+	}
+	@Test
+	public void testAddMember_ShouldFailAddress() {
+		assertEquals(
+				"Address must be under 25 chars", 
+				interact.addMember("John Doe", "123456789 Longstreetname Street", "Anytown", "AL", "12345"));
+	}
+	@Test
+	public void testAddMember_ShouldFailCity() {
+		assertEquals(
+				"City must be under 14 chars",
+				interact.addMember("John Doe", "123 First St", "Longasscityname", "AL", "12345"));
+	}
+	@Test
+	public void testAddMember_ShouldFailState() {
+		assertEquals(
+				"State must have 2 chars", 
+				interact.addMember("John Doe", "123 First St", "Anytown", "ABC", "12345"));
+	}
+	@Test
+	public void testAddMember_ShouldFailZip() {
+		assertEquals(
+				"Zip must have 5 chars", 
+				interact.addMember("John Doe", "123 First St", "Anytown", "AL", "123456"));
+	}
+	@Test
+	public void testAddMember_ShouldSucceed() {
+		assertEquals(
+				"Member 000000020 added successfuly", 
+				interact.addMember("John Doe", "123 First St", "Anytown", "AL", "12345"));
 	}
 	
 	
