@@ -1,4 +1,3 @@
-// Jagifford
 package com.team9.finalproject;
 
 import java.util.Random;
