@@ -281,25 +281,16 @@ public class DataManager implements Serializable{
 	}
 	/**
 	 * Gives the directory as a HashMap<String, String>
-	 * @return dir - HashMap<String, String> of service directory
+	 * @return dir - HashMap<String, String> of 
 	 */
 	public HashMap<String, String> getDir()
 	{
 		return serviceDir;
 	}
-	/**
-	 * Calculates the cost of a service by service code
-	 * @param serviceCode
-	 * @return cost - float value of cost
-	 */
 	public float calculateServiceCost(String serviceCode)
 	{
 		return serviceCostMap.get(serviceCode);
 	}
-	/**
-	 * Provides a string list of member names and ID's
-	 * @return memList - String of member names and ID's, separated by new lines
-	 */
 	public String listMembers()
 	{
 		String s = "";
@@ -309,10 +300,7 @@ public class DataManager implements Serializable{
 		}
 		return s;
 	}
-	/**
-	 * Gives a list of all member ID's. Useful for reports
-	 * @return idList - ArrayList<String> of member Ids.
-	 */
+	//for reports
 	public ArrayList<String> listMemberIds()
 	{
 		ArrayList<String> ids = new ArrayList<String>();
@@ -322,10 +310,6 @@ public class DataManager implements Serializable{
 		}
 		return ids;
 	}
-	/**
-	 * Gives a list of all provider ID's. Useful for reports
-	 * @return idList - ArrayList<String> of provider Ids.
-	 */
 	public ArrayList<String> listProviderIds()
 	{
 		ArrayList<String> ids = new ArrayList<String>();
@@ -335,10 +319,6 @@ public class DataManager implements Serializable{
 		}
 		return ids;
 	}
-	/**
-	 * Provides a string list of member names and ID's
-	 * @return memList - String of member names and ID's, separated by new lines
-	 */
 	public String listProviders()
 	{
 		String s = "";
@@ -348,17 +328,10 @@ public class DataManager implements Serializable{
 		}
 		return s;
 	}
-	/**
-	 * This method serializd the current instance of this class, and saves it to
-	 * "/ChocoData.ser". This method should be called every time you destruct
-	 * a DataManager. 
-	 * @return status - Returns "Data is saved in /ChocoData.ser" if save worked
-	 */
 	public String save()
 	{
 		try
 	      {
-			//Serialize the Class, and save to file
 	         FileOutputStream fileOut =
 	         new FileOutputStream("/ChocoData.ser");
 	         ObjectOutputStream out = new ObjectOutputStream(fileOut);
@@ -375,10 +348,11 @@ public class DataManager implements Serializable{
 	
 	
 	/**
-	 * This is a method used to set up static filesLists the first time the code is run.
-	 * Those are currently the serviceDirectory and the serverCostMap.
-	 * Note - It has bad cohesion, but this is a necessary element that is rarely used, so
+	 * This is a method used to set up static files the first time the code is run
+	 * It has bad cohesion, but this is a necessary element that is rarely used, so
 	 * that is ok.
+	 * 
+	 * 
 	 */
 	private void setupStaticFields()
 	{

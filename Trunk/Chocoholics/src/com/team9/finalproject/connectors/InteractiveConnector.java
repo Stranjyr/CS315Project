@@ -155,12 +155,13 @@ public class InteractiveConnector implements ConnectorInterface{
 						case 'M':
 							display("Enter Member ID");
 							id = scan.nextLine();
-							display("Do you want to change the\n"
+							/*display("Do you want to change the\n"
 									+ "_n_ame, _a_ddress, _c_ity, _s_tate, _z_ip, or s_t_atus?");
 							editWhat = scan.nextLine().toUpperCase().charAt(0);
 							display("Enter new Value");
 							val = scan.nextLine();
-							display(editMember(id, editWhat, val));
+							display(editMember(id, editWhat, val));*/
+							display(editMember(id));
 							break;
 						case 'P':
 							display("Enter Provider ID");
@@ -177,16 +178,29 @@ public class InteractiveConnector implements ConnectorInterface{
 					break;
 				case 'D':
 					display("Delete a _M_ember, _P_rovider, or _C_ancel?");
+					char confirmDelete;
 					switch(scan.nextLine().toUpperCase().charAt(0))
 					{
 						case 'M':
 							display("Enter Member ID");
 							id = scan.nextLine();
+							display("Are you sure you want to delete Member?");
+							confirmDelete = scan.nextLine().toUpperCase().charAt(0);
+							if(confirmDelete != 'Y')
+							{
+								break;
+							}
 							display(dm.removeMember(id));
 							break;
 						case 'P':
 							display("Enter Provider ID");
 							id = scan.nextLine();
+							display("Are you sure you want to delete Provider?");
+							confirmDelete = scan.nextLine().toUpperCase().charAt(0);
+							if(confirmDelete != 'Y')
+							{
+								break;
+							}
 							display(dm.removeProvider(id));
 							break;
 						default: break;
@@ -317,37 +331,90 @@ public class InteractiveConnector implements ConnectorInterface{
 		dm.addProvider(new User(name, id, addr, city, state, zip));
 		return "Provider "+id+" added successfuly";
 	}
-	public String editMember(String id, char eW, String val)
+	public String editMember(String id)
 	{
-		if(dm.findMember(id) == -1)
-		{
+		char editWhat;
+		char contVar;
+		String val;
+		contVar = 'Y';
+		if(dm.findMember(id) == -1){
 			return "Invalid Member ID";
 		}
 		Member m = dm.findAndCloneMember(id);
-		//TODO 
-		//Validate val
-		//in switch/case
-		switch(eW)
-		{
-			case 'N':
-				m.setName(val);
-				break;
-			case 'A':
-				m.setAddress(val);
-				break;
-			case 'C':
-				m.setCity(val);
-				break;
-			case 'S':
-				m.setState(val);
-			case 'Z':
-				m.setZip(val);
-			case 'T':
-				m.setStatus(val);
-			default: return "ERROR: Invalid Edit Field";
+		display("Current Member State: \n");
+		display(m.reportFormat());
+		
+		while(contVar == 'Y'){
+			display("Do you want to change the\n"
+					+ "_n_ame, _a_ddress, _c_ity, _s_tate, or _z_ip");
+
+			editWhat = scan.nextLine().toUpperCase().charAt(0);
+			switch(editWhat){
+				case 'N':
+					display("Enter the new name: ");
+					val = scan.nextLine();
+					while(val.length() > 25){
+						display("Name must be less than 25 characters: ");
+						val = scan.nextLine();
+					}
+					m.setName(val);
+					display("Name set to: " + val);
+					break;
+				case 'A':
+					display("Enter the new address: ");
+					val = scan.nextLine();
+					while(val.length() > 25){
+						display("Address must be less than 25 characters: ");
+						val = scan.nextLine();
+					}
+					m.setAddress(val);
+					display("Address set to: " + val);
+					break;
+				case 'C':
+					display("Enter the new city: ");
+					val = scan.nextLine();
+					while(val.length() > 14){
+						display("City must be less than 14 characters: ");
+						val = scan.nextLine();
+					}
+					m.setCity(val);
+					display("City set to: " + val);
+					break;
+				case 'S':
+					display("Enter the new state: ");
+					val = scan.nextLine();
+					while(val.length() != 2){
+						display("State must be 2 character abbreviateion: ");
+						val = scan.nextLine();
+					}
+					m.setState(val);
+					display("State set to: " + val);
+					break;
+				case 'Z':
+					display("Enter the new zip code: ");
+					val = scan.nextLine();
+					while(val.length() != 5){
+						display("Zip code must be 5 digits: ");
+						val = scan.nextLine();
+					}
+					m.setZip(val);
+					display("Zip code set to: " + val);
+					break;
+				default: display("Invalid Edit Field: ");
+					display("Would you like to keep editing? _y_es or _n_o");
+					contVar = scan.nextLine().toUpperCase().charAt(0);
+					continue;
+				}
+			display("Updated Member Values: \n");
+			display(m.reportFormat());
+			display("Would you like to keep editing? _y_es or _n_o");
+			contVar = scan.nextLine().toUpperCase().charAt(0);
 		}
+		
+		
 		return dm.editMember(id, m);
 	}
+	
 	
 	public String editProvider(String id, char eW, String val)
 	{
