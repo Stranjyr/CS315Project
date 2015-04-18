@@ -13,7 +13,6 @@ import java.util.Scanner;
 
 import com.team9.finalproject.dataMembers.*;
 /**
- * 
  * @author wchampton
  * This class acts as a database for all
  * of the member, provider, and service data
