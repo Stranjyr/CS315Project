@@ -56,9 +56,6 @@ public class ProviderConnector implements ConnectorInterface{
 		  
 		return s;
 	}
-	/**
-	 * 
-	 */
 	@Override
 	public DataManager loadDataManager() {
 		try

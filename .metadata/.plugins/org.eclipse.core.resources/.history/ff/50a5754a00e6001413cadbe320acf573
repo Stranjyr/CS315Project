@@ -26,7 +26,9 @@ public class MemberReport implements ReportGenerator {
 	@Override
 	public String saveToFile(String f, String report) {
 		try {
+			System.out.println(f+".dat");
 			File file = new File("reports/member/"+f+".dat");
+			System.out.println(file.getAbsolutePath());
 			file.getParentFile().mkdirs();
 			file.createNewFile();
 			PrintWriter out = new PrintWriter(file);
