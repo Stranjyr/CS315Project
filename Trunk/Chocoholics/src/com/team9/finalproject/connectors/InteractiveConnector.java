@@ -18,7 +18,8 @@ import com.team9.finalproject.reports.ProviderReport;
 import com.team9.finalproject.reports.ReportGenerator;
 
 public class InteractiveConnector implements ConnectorInterface{
-
+//The interface shown to Chocoholics Anonymous Data Center operators during the day
+//Allows operators to alter data stored for CA providers and members
 	private DataManager dm;
 	private Scanner scan;
 	public InteractiveConnector()
@@ -30,6 +31,7 @@ public class InteractiveConnector implements ConnectorInterface{
 		scan.close();
 	}
 	private String startScreen() {
+	//Displays the screen shown when entering interactive mode
 		String s = "";
 		s+=""+                                                                                             
 				"              ,,                                    ,,                 ,,    ,,                  "+"\n"+
@@ -64,6 +66,8 @@ public class InteractiveConnector implements ConnectorInterface{
 	}
 	@Override
 	public DataManager loadDataManager() {
+	//If stored data can be loaded from ChocoData.ser, loads the data into a new DataManager object
+	//Otherwise creates a new empty DataManager
 		try
 	      {
 	         FileInputStream fileIn = new FileInputStream("/ChocoData.ser");
@@ -87,6 +91,9 @@ public class InteractiveConnector implements ConnectorInterface{
 
 	@Override
 	public String commandLoop() {
+	//If the day is Friday and reports have not been run, runs reports
+	//Asks user to enter one of the commands shown at start
+	//Loops until user asks to quit
 		boolean haveRunReports = false;
 		while(true)
 		{
@@ -108,6 +115,7 @@ public class InteractiveConnector implements ConnectorInterface{
 			String command = scan.nextLine();
 			String id, name, addr, city, state, z;
 			switch(command.toUpperCase().charAt(0))
+			//Checks commands entered by user and directs user to relevant steps
 			{
 				case 'H':
 					display(help());
@@ -147,8 +155,6 @@ public class InteractiveConnector implements ConnectorInterface{
 					break;
 				case 'E':
 					display("Edit _M_ember, _P_rovider, or _C_ancel?");
-					char editWhat;
-					String val;
 					switch(scan.nextLine().toUpperCase().charAt(0))
 					{
 						case 'M':
@@ -165,12 +171,12 @@ public class InteractiveConnector implements ConnectorInterface{
 						case 'P':
 							display("Enter Provider ID");
 							id = scan.nextLine();
-							display("Do you want to change the\n"
+							/*display("Do you want to change the\n"
 									+ "_n_ame, _a_ddress, _c_ity, _s_tate, or _z_ip");
 							editWhat = scan.nextLine().toUpperCase().charAt(0);
 							display("Enter new Value");
-							val = scan.nextLine();
-							display(editProvider(id, editWhat, val));
+							val = scan.nextLine();*/
+							display(editProvider(id));
 							break;
 						default: break;
 					}
@@ -220,6 +226,9 @@ public class InteractiveConnector implements ConnectorInterface{
 							id = scan.nextLine();
 							display(providerReport(id));
 							break;
+						case 'E':
+							display("EFT not yet implemented");
+							break;
 						default: break;
 					}
 					break;
@@ -242,6 +251,8 @@ public class InteractiveConnector implements ConnectorInterface{
 	}
 	
 	private void runBatchReports() {
+	//Creates and saves to disk reports for each member
+	//Should be called every Friday
 		ReportGenerator r;
 		for(String i: dm.listMemberIds())
 		{
@@ -260,6 +271,7 @@ public class InteractiveConnector implements ConnectorInterface{
 		
 	}
 	private String providerReport(String id) {
+	//Runs a report for an individual provider
 		if(dm.findProvider(id) == -1)
 		{
 			return "Error: Invalid Provider Number";
@@ -269,7 +281,9 @@ public class InteractiveConnector implements ConnectorInterface{
 		String rep = r.RunReport(dm.findAndCloneProvider(id), sers);
 		return r.saveToFile(id+new Date().toString().replace(" ", "").replace(":", "-"), rep);
 	}
+	
 	private String memberReport(String id) {
+	//Runs a report for an individual member
 		if(dm.findMember(id) == -1)
 		{
 			return "Error: Invalid Provider Number";
@@ -279,8 +293,11 @@ public class InteractiveConnector implements ConnectorInterface{
 		String rep = r.RunReport(dm.findAndCloneMember(id), sers);
 		return r.saveToFile(id+new Date().toString().replace(" ", "").replace(":", "-"), rep);
 	}
+	
 	public String addMember(String name, String addr, String city, String state, String zip)
+	//Method to add a member to the dataManager's memberList
 	{
+		//Function 
 		//Todo
 		//Validate name
 		//Validate addr
@@ -296,6 +313,7 @@ public class InteractiveConnector implements ConnectorInterface{
 		return "Member "+id+" added successfuly";
 	}
 	public String addProvider(String name, String addr, String city, String state, String zip)
+	//Method to add a Provider to the dataManager's providerList
 	{
 		//Todo
 		//Validate name
@@ -312,21 +330,23 @@ public class InteractiveConnector implements ConnectorInterface{
 		return "Provider "+id+" added successfuly";
 	}
 	public String editMember(String id)
+	//Method to edit members already stored in the memberList
 	{
 		char editWhat;
 		char contVar;
 		String val;
+		char statChar;
 		contVar = 'Y';
 		if(dm.findMember(id) == -1){
 			return "Invalid Member ID";
 		}
 		Member m = dm.findAndCloneMember(id);
 		display("Current Member State: \n");
-		display(m.reportFormat());
+		display(m.reportFormat() + "Status: " + m.getStatus() + "\n");
 		
 		while(contVar == 'Y'){
 			display("Do you want to change the\n"
-					+ "_n_ame, _a_ddress, _c_ity, _s_tate, or _z_ip");
+					+ "_n_ame, _a_ddress, _c_ity, _s_tate, _z_ip or _m_embership status");
 
 			editWhat = scan.nextLine().toUpperCase().charAt(0);
 			switch(editWhat){
@@ -380,13 +400,34 @@ public class InteractiveConnector implements ConnectorInterface{
 					m.setZip(val);
 					display("Zip code set to: " + val);
 					break;
+				case 'M':
+					display("Is this member currently _a_ctive, _s_uspended, or _i_nactive");
+					statChar = scan.nextLine().toUpperCase().charAt(0);
+					switch(statChar){
+						case 'A':
+							m.setStatus("active");
+							break;
+						case 'S':
+							m.setStatus("suspended");
+							break;
+						case 'I':
+							m.setStatus("inactive");
+							break;
+						default: display("Invalid status entered\n");
+						display("Current Member Values: ");
+						display(m.reportFormat() + "Status: " + m.getStatus() + "\n");
+						display("Would you like to keep editing? _y_es or _n_o");
+						contVar = scan.nextLine().toUpperCase().charAt(0);
+						continue;
+					}
+					break;
 				default: display("Invalid Edit Field: ");
 					display("Would you like to keep editing? _y_es or _n_o");
 					contVar = scan.nextLine().toUpperCase().charAt(0);
 					continue;
 				}
 			display("Updated Member Values: \n");
-			display(m.reportFormat());
+			display(m.reportFormat() + "Status: " + m.getStatus() + "\n");
 			display("Would you like to keep editing? _y_es or _n_o");
 			contVar = scan.nextLine().toUpperCase().charAt(0);
 		}
@@ -396,37 +437,93 @@ public class InteractiveConnector implements ConnectorInterface{
 	}
 	
 	
-	public String editProvider(String id, char eW, String val)
+	public String editProvider(String id)
+	//method for editing providers already stored in the providerList
 	{
-		if(dm.findProvider(id) == -1)
-		{
-			return "Invalid Member ID";
+		char editWhat;
+		char contVar;
+		String val;
+		contVar = 'Y';
+		if(dm.findMember(id) == -1){
+			return "Invalid Provider ID";
 		}
-		User m = dm.findAndCloneProvider(id);
-		//TODO 
-		//Validate val
-		//in switch/case
-		switch(eW)
-		{
-			case 'N':
-				m.setName(val);
-				break;
-			case 'A':
-				m.setAddress(val);
-				break;
-			case 'C':
-				m.setCity(val);
-				break;
-			case 'S':
-				m.setState(val);
-			case 'Z':
-				m.setZip(val);
-			default: return "ERROR: Invalid Edit Field";
+		User p = dm.findAndCloneProvider(id);
+		display("Current Provider State: \n");
+		display(p.reportFormat());
+		
+		while(contVar == 'Y'){
+			display("Do you want to change the\n"
+					+ "_n_ame, _a_ddress, _c_ity, _s_tate, or _z_ip");
+
+			editWhat = scan.nextLine().toUpperCase().charAt(0);
+			switch(editWhat){
+				case 'N':
+					display("Enter the new name: ");
+					val = scan.nextLine();
+					while(val.length() > 25){
+						display("Name must be less than 25 characters: ");
+						val = scan.nextLine();
+					}
+					p.setName(val);
+					display("Name set to: " + val);
+					break;
+				case 'A':
+					display("Enter the new address: ");
+					val = scan.nextLine();
+					while(val.length() > 25){
+						display("Address must be less than 25 characters: ");
+						val = scan.nextLine();
+					}
+					p.setAddress(val);
+					display("Address set to: " + val);
+					break;
+				case 'C':
+					display("Enter the new city: ");
+					val = scan.nextLine();
+					while(val.length() > 14){
+						display("City must be less than 14 characters: ");
+						val = scan.nextLine();
+					}
+					p.setCity(val);
+					display("City set to: " + val);
+					break;
+				case 'S':
+					display("Enter the new state: ");
+					val = scan.nextLine();
+					while(val.length() != 2){
+						display("State must be 2 character abbreviateion: ");
+						val = scan.nextLine();
+					}
+					p.setState(val);
+					display("State set to: " + val);
+					break;
+				case 'Z':
+					display("Enter the new zip code: ");
+					val = scan.nextLine();
+					while(val.length() != 5){
+						display("Zip code must be 5 digits: ");
+						val = scan.nextLine();
+					}
+					p.setZip(val);
+					display("Zip code set to: " + val);
+					break;
+				default: display("Invalid Edit Field: ");
+					display("Would you like to keep editing? _y_es or _n_o");
+					contVar = scan.nextLine().toUpperCase().charAt(0);
+					continue;
+				}
+			display("Updated Provider Values: \n");
+			display(p.reportFormat());
+			display("Would you like to keep editing? _y_es or _n_o");
+			contVar = scan.nextLine().toUpperCase().charAt(0);
 		}
-		return dm.editProvider(id, m);
+		
+		
+		return dm.editProvider(id, p);
 	}
 	
 	public String help()
+	//Returns a string containing all accepted commands in Interactive mode
 	{
 		String s = "**** COMMANDS ***********************\n"
 				  +"**** H == HELP - Shows Commands******\n"
@@ -442,6 +539,7 @@ public class InteractiveConnector implements ConnectorInterface{
 
 	@Override
 	public String quit() {
+	//Exits interactive mode and the program entirely
 		return dm.save()+"\nExiting";
 	}
 
