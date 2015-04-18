@@ -17,9 +17,13 @@ import com.team9.finalproject.reports.MemberReport;
 import com.team9.finalproject.reports.ProviderReport;
 import com.team9.finalproject.reports.ReportGenerator;
 
+
+/**
+ * The interface shown to Chocoholics Anonymous Data Center operators during the day
+ * Allows operators to alter data stored for CA provider and members
+ * @author amhyd_000
+ */
 public class InteractiveConnector implements ConnectorInterface{
-//The interface shown to Chocoholics Anonymous Data Center operators during the day
-//Allows operators to alter data stored for CA providers and members
 	private DataManager dm;
 	private Scanner scan;
 	public InteractiveConnector()
@@ -30,8 +34,12 @@ public class InteractiveConnector implements ConnectorInterface{
 		commandLoop();
 		scan.close();
 	}
+	
+	/**
+	 * Creates message shown at the start of Interactive Mode
+	 * @return String : Returns a string containing the start screen art and instructions
+	 */
 	private String startScreen() {
-	//Displays the screen shown when entering interactive mode
 		String s = "";
 		s+=""+                                                                                             
 				"              ,,                                    ,,                 ,,    ,,                  "+"\n"+
@@ -65,10 +73,13 @@ public class InteractiveConnector implements ConnectorInterface{
 		  
 		return s;
 	}
+	
+	/**
+	 * If stored data can be loaded form ChocoData.ser, loads the data into a new DataManager object
+	 * Otherwise creates a new empty DataManager
+	 */
 	@Override
 	public DataManager loadDataManager() {
-	//If stored data can be loaded from ChocoData.ser, loads the data into a new DataManager object
-	//Otherwise creates a new empty DataManager
 		try
 	      {
 	         FileInputStream fileIn = new FileInputStream("/ChocoData.ser");
@@ -89,12 +100,14 @@ public class InteractiveConnector implements ConnectorInterface{
 	      }
 		
 	}
-
+	
+	/**
+	 * If today is Friday and reports have not been run, runs reports
+	 * Asks user to enter one of the commands shown at start
+	 * Loops until user asks to quit
+	 */
 	@Override
 	public String commandLoop() {
-	//If the day is Friday and reports have not been run, runs reports
-	//Asks user to enter one of the commands shown at start
-	//Loops until user asks to quit
 		boolean haveRunReports = false;
 		while(true)
 		{
@@ -269,7 +282,9 @@ public class InteractiveConnector implements ConnectorInterface{
 			
 		}
 	}
-	
+	/**
+	 * 
+	 */
 	private void runBatchReports() {
 	//Creates and saves to disk reports for each member
 	//Should be called every Friday
@@ -290,8 +305,12 @@ public class InteractiveConnector implements ConnectorInterface{
 		}
 		
 	}
+	/**
+	 * Runs a report for an individual provider
+	 * @param id : Provider's id number
+	 * @return String : returns a confirmation message
+	 */
 	private String providerReport(String id) {
-	//Runs a report for an individual provider
 		if(dm.findProvider(id) == -1)
 		{
 			return "Error: Invalid Provider Number";
@@ -302,8 +321,12 @@ public class InteractiveConnector implements ConnectorInterface{
 		return r.saveToFile(id+new Date().toString().replace(" ", "").replace(":", "-"), rep);
 	}
 	
+	/**
+	 * Runs a report for an individual member
+	 * @param id : Provider's id number
+	 * @return String : returns a confirmation string
+	 */
 	private String memberReport(String id) {
-	//Runs a report for an individual member
 		if(dm.findMember(id) == -1)
 		{
 			return "Error: Invalid Provider Number";
@@ -314,8 +337,16 @@ public class InteractiveConnector implements ConnectorInterface{
 		return r.saveToFile(id+new Date().toString().replace(" ", "").replace(":", "-"), rep);
 	}
 	
+	/**
+	 * Method to add a member to the dataManager's memberList
+	 * @param name : New member's name
+	 * @param addr : New member's address
+	 * @param city : New member's hometown
+	 * @param state : New member's state
+	 * @param zip : New member's Zip code
+	 * @return String : Returns a confirmation or cancellation message to the main control loop
+	 */
 	public String addMember(String name, String addr, String city, String state, String zip)
-	//Method to add a member to the dataManager's memberList
 	{
 		//Function 
 		//Todo
@@ -332,8 +363,17 @@ public class InteractiveConnector implements ConnectorInterface{
 		dm.addMember(new Member(name, id, addr, city, state, zip, "Active"));
 		return "Member "+id+" added successfuly";
 	}
+	
+	/**
+	 * Adds a provider to the dataManager's providerList
+	 * @param name : New provider's name
+	 * @param addr : New provider's address
+	 * @param city : New provider's city
+	 * @param state : New provider's state
+	 * @param zip : New provider's Zip code
+	 * @return String : returns a confirmation or cancellation method to the main control loop
+	 */
 	public String addProvider(String name, String addr, String city, String state, String zip)
-	//Method to add a Provider to the dataManager's providerList
 	{
 		//Todo
 		//Validate name
@@ -349,6 +389,12 @@ public class InteractiveConnector implements ConnectorInterface{
 		dm.addProvider(new User(name, id, addr, city, state, zip));
 		return "Provider "+id+" added successfuly";
 	}
+	
+	/**
+	 * Edits members already stored in the memberList
+	 * @param id : Existing member's id number
+	 * @return String : returns a confirmation or cancellation message to the main control loop
+	 */
 	public String editMember(String id)
 	//Method to edit members already stored in the memberList
 	{
@@ -460,7 +506,11 @@ public class InteractiveConnector implements ConnectorInterface{
 		return dm.editMember(id, m);
 	}
 	
-	
+	/**
+	 * Edits a provider already stored in the providerList
+	 * @param id : Existing provider's id number
+	 * @return String : returns a confirmation or cancellation message to the main control loop
+	 */
 	public String editProvider(String id)
 	//method for editing providers already stored in the providerList
 	{
@@ -542,12 +592,14 @@ public class InteractiveConnector implements ConnectorInterface{
 			contVar = scan.nextLine().toUpperCase().charAt(0);
 		}
 		
-		
 		return dm.editProvider(id, p);
 	}
 	
+	/**
+	 * Provides a list of accepted user commands
+	 * @return String : returns a string containing all accepted Interactive Mode commands
+	 */
 	public String help()
-	//Returns a string containing all accepted commands in Interactive mode
 	{
 		String s = "**** COMMANDS ***********************\n"
 				  +"**** H == HELP - Shows Commands******\n"
@@ -561,9 +613,11 @@ public class InteractiveConnector implements ConnectorInterface{
 		return(s);
 	}
 
+	/**
+	 * Exits interactive mode and the program entirely
+	 */
 	@Override
 	public String quit() {
-	//Exits interactive mode and the program entirely
 		return dm.save()+"\nExiting";
 	}
 
@@ -582,6 +636,12 @@ public class InteractiveConnector implements ConnectorInterface{
 		System.out.println(output);
 		return null;
 	}
+	
+	/**
+	 * Returns member info to be used in a report
+	 * @param memberId : the id number of the desired member 
+	 * @return String : string containing the information for the member report
+	 */
 	public String getMember(String memberId){
 		Member m = dm.findAndCloneMember(memberId);
 		if(m==null){
@@ -589,6 +649,12 @@ public class InteractiveConnector implements ConnectorInterface{
 		}
 		return("Member Name: " + m.getName() +"\nMember Address:" + m.getAddress()+"\nMember City:" + m.getCity()+"\nMember State:" + m.getState()+"\nMember Zip Code:" + m.getZip());
 	}
+	
+	/**
+	 * Returns provider info to be used in a report
+	 * @param providerId : the id number of the desired provider
+	 * @return String : string containing the information for the member report
+	 */
 	public String getProvider(String providerId){
 		User p = dm.findAndCloneProvider(providerId);
 		if(p==null){
