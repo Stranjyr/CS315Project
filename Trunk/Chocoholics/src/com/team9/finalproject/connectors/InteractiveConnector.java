@@ -55,6 +55,7 @@ public class InteractiveConnector implements ConnectorInterface{
 		  +"**** R == REPORT - Run Reports*******\n"
 		  +"**** P == PROVIDERS - List Providers*\n"
 		  +"**** M == MEMBERS - List Members*****\n"
+		  +"**** G == Get Data - Show Data*****\n"
 		  +"**** Q == QUIT - Quits***************\n"
 		  +"*************************************\n"
 		  +"*************************************\n";
@@ -215,6 +216,25 @@ public class InteractiveConnector implements ConnectorInterface{
 				case 'M':
 					display(dm.listMembers());
 					break;
+					
+				case 'G':
+					display("Get Data Screen");
+					display("_M_ember, _P_rovider,  _C_ancel?");
+					switch(scan.nextLine().toUpperCase().charAt(0))
+					{
+						case 'M':
+							display("Enter Member ID");
+							id = scan.nextLine();
+							display(getMember(id));
+							break;
+						case 'P':
+							display("Enter Provider ID");
+							id = scan.nextLine();
+							display(getProvider(id));
+							break;
+						default: break;
+					}
+					break;
 				case 'Q':
 					//This does not break, it returns to exit the loop
 					display(quit());
@@ -368,7 +388,7 @@ public class InteractiveConnector implements ConnectorInterface{
 				  +"**** D == DELETE - Delete data*******\n"
 				  +"**** R == REPORT - Run Reports*******\n"
 				  +"**** Q == QUIT - Quits***************\n"
-				  +"*************************************\n"
+				  +"*****G == GET - Show Data*****\n"
 				  +"*************************************\n";
 		return(s);
 	}
@@ -393,5 +413,19 @@ public class InteractiveConnector implements ConnectorInterface{
 		System.out.println(output);
 		return null;
 	}
-
+	public String getMember(String memberId){
+		Member m = dm.findAndCloneMember(memberId);
+		if(m==null){
+			return ("Member does not exist.");
+		}
+		return("Member Name: " + m.getName() +"\nMember Address:" + m.getAddress()+"\nMember City:" + m.getCity()+"\nMember State:" + m.getState()+"\nMember Zip Code:" + m.getZip());
+	}
+	public String getProvider(String providerId){
+		User p = dm.findAndCloneProvider(providerId);
+		if(p==null){
+			return("Provider does not exist.");
+		}
+		return("Provider Name: " + p.getName() +"\nProvider Address:" + p.getAddress()+"\nProvider City:" + p.getCity()+"\nProvider State:" + p.getState()+"\nProvider Zip Code:" + p.getZip());
+	}
+	
 }
