@@ -26,12 +26,10 @@ public class InteractiveConnectorTest {
 	@After
 	public void tearDown() throws Exception {
 	}
-
-	/*@Test
-	public void test() {
-		fail("Not yet implemented");
-	}*/
 	
+	/*
+	 * Begin tests for InteractiveConnector.AddMember
+	 */
 	@Test
 	public void testAddMember_ShouldFailName() {
 		assertEquals(
@@ -42,7 +40,7 @@ public class InteractiveConnectorTest {
 	public void testAddMember_ShouldFailAddress() {
 		assertEquals(
 				"Address must be under 25 chars", 
-				interact.addMember("John Doe", "123456789 Longstreetname Street", "Anytown", "AL", "12345"));
+				interact.addMember("John Doe", "123456789 Longassstreetname Street", "Anytown", "AL", "12345"));
 	}
 	@Test
 	public void testAddMember_ShouldFailCity() {
