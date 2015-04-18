@@ -3,6 +3,12 @@ package com.team9.finalproject.dataMembers;
 import java.io.Serializable;
 import java.text.NumberFormat;
 
+
+/**
+ * 
+ * @author Benjamin Kidd
+ * This class is a storage medium for data associated with a service. 
+ */
 public class Service implements DataInterface, Serializable{
 
 	private String serviceCode;
