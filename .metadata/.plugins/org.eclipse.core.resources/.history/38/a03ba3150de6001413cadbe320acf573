@@ -1,64 +1,37 @@
 package com.team9.finalproject;
 
-import java.util.Random;
-import java.util.Scanner;
+import static org.junit.Assert.*;
 
-import com.team9.finalproject.connectors.InteractiveConnector;
-import com.team9.finalproject.connectors.ProviderConnector;
+import java.util.Random;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
 import com.team9.finalproject.dataMembers.Member;
 import com.team9.finalproject.dataMembers.User;
 
+public class InteractiveConnectorTest {
+	DataManager dm;
 
-/**
- * TODO
- * Interactive Connector needs
- * 		New Get methods - Ben
- * 		Better Editing - Austin
- * 		Delete Validation - Joe
- * 		Edit Validation - Austin
- * 		Reports Work - William
- * 
- * Provider Connector
- * 		Better Billing - Justin
- * 		Check validation- Justin
- * 
- * 
- * @author William
- *
- */
-public class ChocoholicsMain {
+	@Before
+	public void setUp() throws Exception {
+		seed();
+	}
 
-	public static void main(String[] args) {
-		
-		
-		Scanner scan = new Scanner(System.in);
-		
-		//remove before release
-		System.out.println("Type _S_eed to create a new test data template, or any other key to continue");
-		switch(scan.next().toUpperCase().charAt(0))
-		{
-			case 'S':
-				seedDataManager();
-				break;
-		}
-		//end dev bit
-		System.out.println("Enter I for interactive mode, or P for provider mode");
-		switch(scan.next().toUpperCase().charAt(0))
-		{
-			case 'I':
-				new InteractiveConnector();
-				break;
-			case 'P':
-				new ProviderConnector();
-				break;
-		}
-		scan.close();
+	@After
+	public void tearDown() throws Exception {
+	}
 
+	@Test
+	public void test() {
+		fail("Not yet implemented");
 	}
 	
-	private static void seedDataManager()
+	
+	public void seed()
 	{
-		DataManager dm = new DataManager();
+		dm = new DataManager();
 		String[] fn = {"John", "Sally", "Jill", "Kreig", "Jake", "Neil", "Caroline"};
 		String[] ln = {"Smith", "Doe", "Baker", "Forth", "Thomson", "Bekensdale", "Dale"};
 		String[] StreetName = {"Madison", "1st", "Main", "18th", "Brook", "Mayfield"};
@@ -91,9 +64,6 @@ public class ChocoholicsMain {
 					addr, city,state, String.format("%05d", r.nextInt(99999))));
 
 		}
-		
-		//Save the data
-		dm.save();
 	}
 
 }
