@@ -21,6 +21,12 @@ public class IdBag implements Serializable
 		stack.push(String.format("%09d", index));
 	}
 	
+	
+	/**
+	 * This method will return the next available ID number.
+	 * @return
+	 */
+	
 	public String nextId()
 	{
 		if(stack.isEmpty())
