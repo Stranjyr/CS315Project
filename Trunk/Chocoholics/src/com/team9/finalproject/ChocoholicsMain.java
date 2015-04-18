@@ -10,26 +10,21 @@ import com.team9.finalproject.dataMembers.User;
 
 
 /**
- * TODO
- * Interactive Connector needs
- * 		New Get methods - Ben
- * 		Better Editing - Austin
- * 		Delete Validation - Joe
- * 		Edit Validation - Austin
- * 		Reports Work - William
+ * Startup file for the program. On start, allows user to choose 
+ * interactive mode for users at the data center, or provider mode.
  * 
- * Provider Connector
- * 		Better Billing - Justin
- * 		Check validation- Justin
- * 
+ * For debug purposes, also allows users to generate random members and
+ * providers to populate the data manager.
  * 
  * @author William
- *
  */
 public class ChocoholicsMain {
-
+	
+	/**
+	 * Main function of the program
+	 * @param args: command line arguments
+	 */
 	public static void main(String[] args) {
-		
 		
 		Scanner scan = new Scanner(System.in);
 		
@@ -56,6 +51,9 @@ public class ChocoholicsMain {
 
 	}
 	
+	/**
+	 * Generate random members and providers to populate the data manager.
+	 */
 	private static void seedDataManager()
 	{
 		DataManager dm = new DataManager();
