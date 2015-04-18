@@ -275,6 +275,9 @@ public class ProviderConnector implements ConnectorInterface{
 	}
 
 	@Override
+	/**
+	 * Tells data manager to save and then exists.
+	 */
 	public String quit() {
 		return dm.save()+"\nExiting";
 	}
