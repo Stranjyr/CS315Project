@@ -106,6 +106,11 @@ public class ProviderConnector implements ConnectorInterface{
 					String y = scan.next();
 					display("Enter comment (- for no comment)");
 					String com = scan.next();
+					display("Do you want to add this bill? (Y or N)");
+					if (scan.next().toUpperCase().charAt(0) != 'Y') {
+						display("Canceling...");
+						break;
+					}
 					display(bill(memberId, provId, serCode, m+"/"+d+"/"+y, com));
 					break;
 				case 'V':
