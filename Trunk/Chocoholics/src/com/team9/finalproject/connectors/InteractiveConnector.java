@@ -30,6 +30,11 @@ public class InteractiveConnector implements ConnectorInterface{
 		commandLoop();
 		scan.close();
 	}
+	//Used for unit testing
+	public InteractiveConnector(DataManager d)
+	{
+		dm = d;
+	}
 	private String startScreen() {
 	//Displays the screen shown when entering interactive mode
 		String s = "";
