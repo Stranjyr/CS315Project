@@ -317,13 +317,21 @@ public class InteractiveConnector implements ConnectorInterface{
 	public String addMember(String name, String addr, String city, String state, String zip)
 	//Method to add a member to the dataManager's memberList
 	{
-		//Function 
-		//Todo
 		//Validate name
+		if(name.length()>25)
+			return "Name must be under 25 chars";
 		//Validate addr
+		if(addr.length()>25)
+			return "Address must be under 25 chars";
 		//validate city
+		if(city.length()>14)
+			return "City must be under 14 chars";
 		//validate state
+		if(state.length()>2)
+			return "State must have 2 chars";
 		//validate zip
+		if(zip.length() !=5)
+			return "Zip must have 5 chars";
 		String id = dm.getNextMemID();
 		if(id == null)
 		{
@@ -335,12 +343,21 @@ public class InteractiveConnector implements ConnectorInterface{
 	public String addProvider(String name, String addr, String city, String state, String zip)
 	//Method to add a Provider to the dataManager's providerList
 	{
-		//Todo
 		//Validate name
+		if(name.length()>25)
+			return "Name must be under 25 chars";
 		//Validate addr
+		if(addr.length()>25)
+			return "Address must be under 25 chars";
 		//validate city
+		if(city.length()>14)
+			return "City must be under 14 chars";
 		//validate state
+		if(state.length()>2)
+			return "State must have 2 chars";
 		//validate zip
+		if(zip.length() !=5)
+			return "Zip must have 5 chars";
 		String id = dm.getNextProvID();
 		if(id == null)
 		{
