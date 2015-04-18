@@ -104,14 +104,35 @@ public class ProviderConnector implements ConnectorInterface{
 					}
 					display("Enter your provider Number");
 					String provId = scan.next();
+					// Validate provider
+					if(dm.findProvider(provId) == -1)
+					{
+						display("Provider number invalid");
+						display("Canceling");
+						break;
+					}
 					display("Enter Service Code");
 					String serCode = scan.next();
+					// Validate Service Code
+					if(dm.getDir().get(serCode) == null)
+					{
+						display("Service Code Error: Check Directory");
+						display("Canceling");
+						break;
+					}
 					display("Enter month service was provided as a 2 digit number");
 					String m = scan.next();
 					display("Enter day of month service was provided as a 2 digit number");
 					String d = scan.next();
 					display("Enter year service was provided as a four digit number");
 					String y = scan.next();
+					// Validate year
+					int year = Integer.parseInt(y);
+					if (year < 2000 || year > 3000)
+					{
+						display("Invalid year (2000 < Year < 3000)");
+						break;
+					}
 					display("Enter comment (- for no comment)");
 					String com = scan.next();
 					display("Do you want to add this bill? (Y or N)");
