@@ -176,16 +176,29 @@ public class InteractiveConnector implements ConnectorInterface{
 					break;
 				case 'D':
 					display("Delete a _M_ember, _P_rovider, or _C_ancel?");
+					char confirmDelete;
 					switch(scan.nextLine().toUpperCase().charAt(0))
 					{
 						case 'M':
 							display("Enter Member ID");
 							id = scan.nextLine();
+							display("Are you sure you want to delete Member?");
+							confirmDelete = scan.nextLine().toUpperCase().charAt(0);
+							if(confirmDelete != 'Y')
+							{
+								break;
+							}
 							display(dm.removeMember(id));
 							break;
 						case 'P':
 							display("Enter Provider ID");
 							id = scan.nextLine();
+							display("Are you sure you want to delete Provider?");
+							confirmDelete = scan.nextLine().toUpperCase().charAt(0);
+							if(confirmDelete != 'Y')
+							{
+								break;
+							}
 							display(dm.removeProvider(id));
 							break;
 						default: break;
