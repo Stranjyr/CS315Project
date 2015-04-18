@@ -16,7 +16,7 @@ import com.team9.finalproject.dataMembers.Service;
 public class ProviderConnector implements ConnectorInterface{
 
 	private DataManager dm;
-	Scanner scan;
+	Scanner scan;  // Used to get input from user
 	
 	public ProviderConnector()
 	{
@@ -94,6 +94,14 @@ public class ProviderConnector implements ConnectorInterface{
 				case 'B':
 					display("Enter Member ID to bill");
 					String memberId = scan.next();
+					// Validate member before continuing
+					String status = dm.validateMember(memberId);
+					if(!status.toLowerCase().equals("active"))
+					{
+						display("Member Error: "+ status);
+						display("Canceling");
+						break;
+					}
 					display("Enter your provider Number");
 					String provId = scan.next();
 					display("Enter Service Code");
@@ -107,7 +115,8 @@ public class ProviderConnector implements ConnectorInterface{
 					display("Enter comment (- for no comment)");
 					String com = scan.next();
 					display("Do you want to add this bill? (Y or N)");
-					if (scan.next().toUpperCase().charAt(0) != 'Y') {
+					if (scan.next().toUpperCase().charAt(0) != 'Y')
+					{
 						display("Canceling...");
 						break;
 					}
