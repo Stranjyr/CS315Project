@@ -80,7 +80,15 @@
             <test name="com.team9.finalproject.ProviderConnectorTest" todir="${junit.output.dir}"/>
             <classpath refid="Chocoholics.classpath"/>
         </junit>
-    </target>          	
+    </target>
+	<target name="IDbagTest">
+	        <mkdir dir="${junit.output.dir}"/>
+	        <junit fork="yes" printsummary="withOutAndErr">
+	            <formatter type="xml"/>
+	            <test name="com.team9.finalproject.IDBagTest" todir="${junit.output.dir}"/>
+	            <classpath refid="Chocoholics.classpath"/>
+	        </junit>
+	    </target>
     <target name="junitreport">
         <junitreport todir="${junit.output.dir}">
             <fileset dir="${junit.output.dir}">
