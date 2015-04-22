@@ -26,10 +26,6 @@ public class InteractiveConnectorTest {
 	@After
 	public void tearDown() throws Exception {
 	}
-<<<<<<< HEAD
-=======
-
->>>>>>> 44a0c4da5374cd5ad8d490d61dd3786b3d220807
 	
 	/*
 	 * Begin tests for InteractiveConnector.AddMember
