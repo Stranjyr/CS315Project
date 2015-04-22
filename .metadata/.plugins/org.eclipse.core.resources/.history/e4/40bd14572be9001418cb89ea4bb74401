@@ -1,4 +1,9 @@
-<?eclipse.ant.import xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. -->
 <project basedir="." default="build" name="Chocoholics">
     <property environment="env"/>
     <property name="junit.output.dir" value="junit"/>
@@ -35,17 +40,6 @@
             <classpath refid="Chocoholics.classpath"/>
         </javac>
     </target>
-	
-	<target name ="makejar" description="Create a jar for the Chocoholics project">
-		<manifest file="MANIFEST.MF">
-		  <attribute name="Main-Class"
-		             value="com.team9.finalproject.ChocoholicsMain" />
-		</manifest>
-	    <jar jarfile="release/Chocoholics.jar" includes="**/*.class, dir.dat"
-	    	basedir="bin" manifest="MANIFEST.MF" />
-		<fileset dir="bin" />
-	 </target>
-	
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
     <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
         <copy todir="${ant.library.dir}">
@@ -80,15 +74,7 @@
             <test name="com.team9.finalproject.ProviderConnectorTest" todir="${junit.output.dir}"/>
             <classpath refid="Chocoholics.classpath"/>
         </junit>
-    </target>
-	<target name="IDbagTest">
-	        <mkdir dir="${junit.output.dir}"/>
-	        <junit fork="yes" printsummary="withOutAndErr">
-	            <formatter type="xml"/>
-	            <test name="com.team9.finalproject.IDBagTest" todir="${junit.output.dir}"/>
-	            <classpath refid="Chocoholics.classpath"/>
-	        </junit>
-	    </target>
+    </target>          	
     <target name="junitreport">
         <junitreport todir="${junit.output.dir}">
             <fileset dir="${junit.output.dir}">

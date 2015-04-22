@@ -398,9 +398,8 @@ public class DataManager implements Serializable{
 		}
 		catch(IOException e)
 		{
-			serviceDir.put("000000", "test_code");
-			System.out.println("dir.dat not found. Adding test service 000000");
-			serviceCostMap.put("000000", 0.00f);
+			e.printStackTrace();
+			return;
 		}
 		
 	}

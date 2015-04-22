@@ -41,7 +41,7 @@
 		  <attribute name="Main-Class"
 		             value="com.team9.finalproject.ChocoholicsMain" />
 		</manifest>
-	    <jar jarfile="release/Chocoholics.jar" includes="**/*.class, dir.dat"
+	    <jar jarfile="bin/Chocoholics.jar" includes="**/*.class, dir.dat"
 	    	basedir="bin" manifest="MANIFEST.MF" />
 		<fileset dir="bin" />
 	 </target>
