@@ -5,6 +5,7 @@ import java.util.ArrayDeque;
 /**
  * This class keeps an list of sequential id numbers and can give the next valid number. Class will also return an unused
  * id number back to the bag.
+ * @author William Hampton
  * 
  *
  */
@@ -13,6 +14,11 @@ public class IdBag implements Serializable
 	private int index;
 	private int range;
 	private ArrayDeque<String> stack;
+	/**
+	 * Standard Constructor. It allows ID's to be generated starting at i and running to range.
+	 * @param i: the starting value for ids
+	 * @param range: the maximum value of ids.
+	 */
 	public IdBag(int i, int range)
 	{
 		this.index = i;
@@ -23,8 +29,9 @@ public class IdBag implements Serializable
 	
 	
 	/**
-	 * This method will return the next available ID number.
-	 * @return
+	 * This method will return the next available ID number. It will go sequentially unless
+	 * Someone deletes a previous id.
+	 * @return id a 9-digit ID
 	 */
 	
 	public String nextId()
@@ -44,6 +51,11 @@ public class IdBag implements Serializable
 		}
 		return out;
 	}
+	/**
+	 * This method is called when an ID is deleted. The ID is pushed onto the stack
+	 * allowing it to be reused
+	 * @param id: The id that has been deleted.
+	 */
 	public void freeID(String id)
 	{
 		stack.push(id);

@@ -14,6 +14,7 @@ import com.team9.finalproject.dataMembers.Service;
  * 
  *   This class is used to receive and
  *   compile Member data to be used by the report generator
+ *   @author William Hampton
  *   
  */
 
@@ -24,8 +25,8 @@ public class MemberReport implements ReportGenerator {
 	@Override
 	/**
 	 * This method returns report for member using current member data
-	 * @param databit
-	 * @param servs
+	 * @param databit: the member instance to report on
+	 * @param servs: the list of services attached to the member
 	 * @return report - report for member
 	 */
 	public String RunReport(DataInterface databit, List<Service> servs) {
@@ -43,8 +44,8 @@ public class MemberReport implements ReportGenerator {
 	/**
 	 * This method writes member report to database
 	 * so that member report can be generated and emailed
-	 * @param f
-	 * @param report
+	 * @param f: file name
+	 * @param report: string to report
 	 * @return Status of file, "Error Writing File" if file fails to write successfully
 	 */
 

@@ -3,7 +3,6 @@ package com.team9.finalproject.connectors;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -26,6 +25,9 @@ import com.team9.finalproject.reports.ReportGenerator;
 public class InteractiveConnector implements ConnectorInterface{
 	private DataManager dm;
 	private Scanner scan;
+	/**
+	 * This constructor loads in the previous data and starts the command loop.
+	 */
 	public InteractiveConnector()
 	{
 		scan = new Scanner(System.in);
@@ -36,6 +38,7 @@ public class InteractiveConnector implements ConnectorInterface{
 	}
 	/**
 	 * For Unit Testing only
+	 * @param d datamanager to be loaded
 	 */
 	public InteractiveConnector(DataManager d)
 	{
@@ -85,6 +88,8 @@ public class InteractiveConnector implements ConnectorInterface{
 	/**
 	 * If stored data can be loaded form ChocoData.ser, loads the data into a new DataManager object
 	 * Otherwise creates a new empty DataManager
+	 * @return newDataManager: Either a loaded instance of a datamanager, or a new datamanager
+	 * if something went wrong.
 	 */
 	@Override
 	public DataManager loadDataManager() {
@@ -110,9 +115,12 @@ public class InteractiveConnector implements ConnectorInterface{
 	}
 	
 	/**
-	 * If today is Friday and reports have not been run, runs reports
+	 * THis is the main command loop. It is the entry point for all of our
+	 * Business logic.
 	 * Asks user to enter one of the commands shown at start
 	 * Loops until user asks to quit
+	 * @return exit: The string "Exited"
+	 * 
 	 */
 	@Override
 	public String commandLoop() {

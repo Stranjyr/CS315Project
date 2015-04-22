@@ -10,14 +10,15 @@ import java.io.File;
  * Currently the email system
  *  isn't implemented 
  *  because emails don't exist for those requesting
+ *  @author William Hampton
  *
  */
 public class ReportSender {
 	/**
 	 * Method sends email
-	 * @param f
-	 * @param email
-	 * @return status of email - Not yet implemented
+	 * @param f: file
+	 * @param email: email to send file to
+	 * @return status of email: Not yet implemented
 	 */
 	public static String emailReport(File f, String email)
 	{

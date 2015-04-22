@@ -13,19 +13,17 @@ import java.text.NumberFormat;
  * 
  *   This class is used to receive and
  *   compile Provider data to be used by the report generator
+ *   @author William Hampton
  *   
  */
 public class ProviderReport implements ReportGenerator {
 
-/** Method 
- * 
- */
 	@Override
 	/**
 	 * This method returns report for provider using current member data
-	 * @param databit
-	 * @param servs
-	 * @return report - report for member
+	 * @param databit: user instance to report on
+	 * @param servs: list of services attached to the user
+	 * @return report: report for member
 	 */
 	public String RunReport(DataInterface databit, List<Service> servs) {
 		float fee = 0f;
@@ -50,9 +48,9 @@ public class ProviderReport implements ReportGenerator {
 	/**
 	 * This method writes provider report to database
 	 * so that provider report can be generated and emailed
-	 * @param f
-	 * @param report
-	 * @return Status of file, "Error Writing File" if file fails to write successfully
+	 * @param f: file name
+	 * @param report: report string
+	 * @return Code: Status of file, "Error Writing File" if file fails to write successfully
 	 */
 	public String saveToFile(String f, String report) { 
 		try {

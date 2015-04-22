@@ -2,7 +2,6 @@ package com.team9.finalproject;
 
 import static org.junit.Assert.*;
 
-import java.util.Random;
 
 import org.junit.After;
 import org.junit.Before;
@@ -25,12 +24,7 @@ public class InteractiveConnectorTest {
 
 	@After
 	public void tearDown() throws Exception {
-	}
-<<<<<<< HEAD
-=======
-
->>>>>>> 44a0c4da5374cd5ad8d490d61dd3786b3d220807
-	
+	}	
 	/*
 	 * Begin tests for InteractiveConnector.AddMember
 	 */
@@ -117,7 +111,7 @@ public class InteractiveConnectorTest {
 	@Test
 	public void testgetMember_ShouldSucceed() {
 		assertEquals(
-				"Member Name: Jake Baker\nMember Address:4372 Madison Dr\nMember City:Benbrook\nMember State:Nm\nMember Zip Code:29569",
+				"Member Name: John Doe\nMember Address:123 First St\nMember City:Anytown\nMember State:AL\nMember Zip Code:12345",
 				interact.getMember("000000000"));
 	}
 	@Test
@@ -129,7 +123,7 @@ public class InteractiveConnectorTest {
 	@Test
 	public void testgetProvider_ShouldSucceed() {
 		assertEquals(
-				"Provider ID 000000000 gotten successfuly",
+				"Provider Name: John Doe\nProvider Address:123 First St\nProvider City:Anytown\nProvider State:AL\nProvider Zip Code:12345",
 				interact.getProvider("000000000"));
 	}
 	

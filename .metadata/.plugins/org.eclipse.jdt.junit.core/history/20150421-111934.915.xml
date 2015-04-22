@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="InteractiveConnectorTest" project="Chocoholics" tests="16" started="16" failures="2" errors="0" ignored="0">
+  <testsuite name="com.team9.finalproject.InteractiveConnectorTest" time="0.004">
+    <testcase name="testAddMember_ShouldSucceed" classname="com.team9.finalproject.InteractiveConnectorTest" time="0.002"/>
+    <testcase name="testAddMember_ShouldFailState" classname="com.team9.finalproject.InteractiveConnectorTest" time="0.0"/>
+    <testcase name="testAddMember_ShouldFailZip" classname="com.team9.finalproject.InteractiveConnectorTest" time="0.0"/>
+    <testcase name="testgetMember_ShouldSucceed" classname="com.team9.finalproject.InteractiveConnectorTest" time="0.001">
+      <failure>
+        <expected>Member Name: Jake Baker
+Member Address:4372 Madison Dr
+Member City:Benbrook
+Member State:Nm
+Member Zip Code:29569</expected>
+        <actual>Member Name: John Doe
+Member Address:123 First St
+Member City:Anytown
+Member State:AL
+Member Zip Code:12345</actual>org.junit.ComparisonFailure: expected:&lt;Member Name: J[ake Baker
+Member Address:4372 Madison Dr
+Member City:Benbrook
+Member State:Nm
+Member Zip Code:29569]&gt; but was:&lt;Member Name: J[ohn Doe
+Member Address:123 First St
+Member City:Anytown
+Member State:AL
+Member Zip Code:12345]&gt;&#13;
+	at org.junit.Assert.assertEquals(Assert.java:115)&#13;
+	at org.junit.Assert.assertEquals(Assert.java:144)&#13;
+	at com.team9.finalproject.InteractiveConnectorTest.testgetMember_ShouldSucceed(InteractiveConnectorTest.java:114)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)&#13;
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)&#13;
+	at java.lang.reflect.Method.invoke(Unknown Source)&#13;
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)&#13;
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#13;
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)&#13;
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)&#13;
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)&#13;
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)&#13;
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)&#13;
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)&#13;
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)&#13;
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)&#13;
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)&#13;
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)&#13;
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)&#13;
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)&#13;
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)&#13;
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)&#13;
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)&#13;
+&#13;
+</failure>
+    </testcase>
+    <testcase name="testgetProvider_ShouldFail" classname="com.team9.finalproject.InteractiveConnectorTest" time="0.0"/>
+    <testcase name="testAddProvider_ShouldSucceed" classname="com.team9.finalproject.InteractiveConnectorTest" time="0.0"/>
+    <testcase name="testAddProvider_ShouldFailAddress" classname="com.team9.finalproject.InteractiveConnectorTest" time="0.0"/>
+    <testcase name="testAddProvider_ShouldFailCity" classname="com.team9.finalproject.InteractiveConnectorTest" time="0.0"/>
+    <testcase name="testAddProvider_ShouldFailName" classname="com.team9.finalproject.InteractiveConnectorTest" time="0.0"/>
+    <testcase name="testAddMember_ShouldFailAddress" classname="com.team9.finalproject.InteractiveConnectorTest" time="0.0"/>
+    <testcase name="testAddProvider_ShouldFailZip" classname="com.team9.finalproject.InteractiveConnectorTest" time="0.0"/>
+    <testcase name="testgetProvider_ShouldSucceed" classname="com.team9.finalproject.InteractiveConnectorTest" time="0.001">
+      <failure>
+        <expected>Provider ID 000000000 gotten successfuly</expected>
+        <actual>Provider Name: John Doe
+Provider Address:123 First St
+Provider City:Anytown
+Provider State:AL
+Provider Zip Code:12345</actual>org.junit.ComparisonFailure: expected:&lt;Provider [ID 000000000 gotten successfuly]&gt; but was:&lt;Provider [Name: John Doe
+Provider Address:123 First St
+Provider City:Anytown
+Provider State:AL
+Provider Zip Code:12345]&gt;&#13;
+	at org.junit.Assert.assertEquals(Assert.java:115)&#13;
+	at org.junit.Assert.assertEquals(Assert.java:144)&#13;
+	at com.team9.finalproject.InteractiveConnectorTest.testgetProvider_ShouldSucceed(InteractiveConnectorTest.java:126)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)&#13;
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)&#13;
+	at java.lang.reflect.Method.invoke(Unknown Source)&#13;
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)&#13;
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#13;
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)&#13;
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)&#13;
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)&#13;
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)&#13;
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)&#13;
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)&#13;
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)&#13;
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)&#13;
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)&#13;
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)&#13;
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)&#13;
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)&#13;
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)&#13;
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)&#13;
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)&#13;
+&#13;
+</failure>
+    </testcase>
+    <testcase name="testgetMember_ShouldFail" classname="com.team9.finalproject.InteractiveConnectorTest" time="0.0"/>
+    <testcase name="testAddProvider_ShouldFailState" classname="com.team9.finalproject.InteractiveConnectorTest" time="0.0"/>
+    <testcase name="testAddMember_ShouldFailCity" classname="com.team9.finalproject.InteractiveConnectorTest" time="0.0"/>
+    <testcase name="testAddMember_ShouldFailName" classname="com.team9.finalproject.InteractiveConnectorTest" time="0.0"/>
+  </testsuite>
+</testrun>

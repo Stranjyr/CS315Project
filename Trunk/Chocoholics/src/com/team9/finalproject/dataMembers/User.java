@@ -4,9 +4,10 @@ import java.io.Serializable;
 
 /**
  * 
- * @author wchampton
+ * 
  * This Class is a storage medium for data tied to
  * a particular user
+ * @author wchampton
  *
  */
 public class User implements DataInterface, Serializable{
@@ -18,12 +19,12 @@ public class User implements DataInterface, Serializable{
 	protected String zip;
 	/**
 	 * 
-	 * @param name 
+	 * @param name user's name
 	 * @param number unique id of the user
-	 * @param address
-	 * @param city
-	 * @param state
-	 * @param zip
+	 * @param address user's address
+	 * @param city user's city
+	 * @param state users state abbreviation
+	 * @param zip users zipcode
 	 */
 	public User(String name, String number, String address, String city,
 			String state, String zip) {
@@ -72,6 +73,12 @@ public class User implements DataInterface, Serializable{
 	public void setZip(String zip) {
 		this.zip = zip;
 	}
+	/**
+	 * This method returns a formatted string of all the data in the class
+	 * It is used to aid report standardization.
+	 * @return report a formatted string of all the data in the User. 
+	 * 
+	 */
 	@Override
 	public String reportFormat() {
 		String report = "";

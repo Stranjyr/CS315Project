@@ -1,0 +1,90 @@
+<?eclipse.ant.import xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="build" name="Chocoholics">
+    <property environment="env"/>
+    <property name="junit.output.dir" value="junit"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.8"/>
+    <property name="source" value="1.8"/>
+    <path id="JUnit 4.libraryclasspath">
+        <pathelement location="../../../../../../Dev/EclipseLuna/eclipse/plugins/org.junit_4.11.0.v201303080030/junit.jar"/>
+        <pathelement location="../../../../../../Dev/EclipseLuna/eclipse/plugins/org.hamcrest.core_1.3.0.v201303031735.jar"/>
+    </path>
+    <path id="Chocoholics.classpath">
+        <pathelement location="bin"/>
+        <path refid="JUnit 4.libraryclasspath"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="Chocoholics.classpath"/>
+        </javac>
+    </target>
+	<target name ="makejar" description="Create a jar for the Chocoholics project">
+		<manifest file="build/MANIFEST.MF">
+		  <attribute name="Main-Class"
+		             value="com.team9.finalproject.ChocoholicsMain" />
+		</manifest>
+	    <jar jarfile="bin/Chocoholics.jar" includes="*.class"
+	    	basedir="bin" manifest="build/MANIFEST.MF"/>
+		  <fileset dir="build/classes" />
+	  </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="ChocoholicsMain">
+        <java classname="com.team9.finalproject.ChocoholicsMain" failonerror="true" fork="yes">
+            <classpath refid="Chocoholics.classpath"/>
+        </java>
+    </target>
+    <target name="InteractiveConnectorTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="com.team9.finalproject.InteractiveConnectorTest" todir="${junit.output.dir}"/>
+            <classpath refid="Chocoholics.classpath"/>
+        </junit>
+    </target>
+  	<target name="ProviderConnectorTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="com.team9.finalproject.ProviderConnectorTest" todir="${junit.output.dir}"/>
+            <classpath refid="Chocoholics.classpath"/>
+        </junit>
+    </target>          	
+    <target name="junitreport">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}"/>
+        </junitreport>
+    </target>
+</project>

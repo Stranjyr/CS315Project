@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" failures="0" hostname="No-Stranjyr" name="com.team9.finalproject.InteractiveConnectorTest" skipped="0" tests="16" time="0.19" timestamp="2015-04-21T16:30:20">
+  <properties>
+    <property name="java.vendor" value="Oracle Corporation" />
+    <property name="env.CONCEPT_INST_DIR" value="C:\OrCAD\OrCAD_16.6_Lite" />
+    <property name="sun.java.launcher" value="SUN_STANDARD" />
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers" />
+    <property name="env.PROMPT" value="$P$G" />
+    <property name="os.name" value="Windows 7" />
+    <property name="env.FP_NO_HOST_CHECK" value="NO" />
+    <property name="sun.boot.class.path" value="C:\Program Files\Java\jre1.8.0_40\lib\resources.jar;C:\Program Files\Java\jre1.8.0_40\lib\rt.jar;C:\Program Files\Java\jre1.8.0_40\lib\sunrsasign.jar;C:\Program Files\Java\jre1.8.0_40\lib\jsse.jar;C:\Program Files\Java\jre1.8.0_40\lib\jce.jar;C:\Program Files\Java\jre1.8.0_40\lib\charsets.jar;C:\Program Files\Java\jre1.8.0_40\lib\jfr.jar;C:\Program Files\Java\jre1.8.0_40\classes" />
+    <property name="env.COMPUTERNAME" value="NO-STRANJYR" />
+    <property name="env.CommonProgramW6432" value="C:\Program Files\Common Files" />
+    <property name="env.ALLUSERSPROFILE" value="C:\ProgramData" />
+    <property name="sun.desktop" value="windows" />
+    <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+    <property name="ant.home" value="C:\Dev\EclipseLuna\eclipse\plugins\org.apache.ant_1.9.2.v201404171502" />
+    <property name="java.runtime.version" value="1.8.0_40-b26" />
+    <property name="env.HOMEPATH" value="\Users\William" />
+    <property name="env.__COMPAT_LAYER" value="RunAsAdmin" />
+    <property name="user.name" value="William" />
+    <property name="env.CDSROOT" value="C:\OrCAD\OrCAD_16.6_Lite" />
+    <property name="env.PATH" value="C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\Common Files\Microsoft Shared\Windows Live;c:\Program Files (x86)\Intel\iCLS Client\;c:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files (x86)\Windows Live\Shared;C:\Program Files (x86)\Calibre2\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x64;C:\Program Files\TortoiseSVN\bin;C:\Python33;C:\Program Files (x86)\Microchip\MPLAB C32 Suite\bin;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files (x86)\Microsoft SDKs\TypeScript\1.0\;C:\Program Files (x86)\Skype\Phone\;C:\OrCAD\OrCAD_16.6_Lite\OpenAccess\bin\win32\opt;C:\OrCAD\OrCAD_16.6_Lite\tools\pcb\bin;C:\OrCAD\OrCAD_16.6_Lite\tools\fet\bin;C:\OrCAD\OrCAD_16.6_Lite\tools\Capture;C:\OrCAD\OrCAD_16.6_Lite\tools\PSpice;C:\OrCAD\OrCAD_16.6_Lite\tools\specctra\bin;C:\OrCAD\OrCAD_16.6_Lite\tools\bin;c:\altera\12.1\modelsim_ase\win32aloem" />
+    <property name="user.language" value="en" />
+    <property name="env.windows_tracing_flags" value="3" />
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jre1.8.0_40\bin" />
+    <property name="ant.project.default-target" value="build" />
+    <property name="ant.project.name" value="Chocoholics" />
+    <property name="java.version" value="1.8.0_40" />
+    <property name="env.PROCESSOR_IDENTIFIER" value="Intel64 Family 6 Model 58 Stepping 9, GenuineIntel" />
+    <property name="user.timezone" value="America/Chicago" />
+    <property name="env.asl.log" value="Destination=file" />
+    <property name="env.TEMP" value="C:\Users\William\AppData\Local\Temp" />
+    <property name="sun.arch.data.model" value="64" />
+    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jre1.8.0_40\lib\endorsed" />
+    <property name="sun.cpu.isalist" value="amd64" />
+    <property name="env.HOMEDRIVE" value="C:" />
+    <property name="sun.jnu.encoding" value="Cp1252" />
+    <property name="file.encoding.pkg" value="sun.io" />
+    <property name="env.VS110COMNTOOLS" value="C:\Program Files (x86)\Microsoft Visual Studio 11.0\Common7\Tools\" />
+    <property name="file.separator" value="\" />
+    <property name="java.specification.name" value="Java Platform API Specification" />
+    <property name="java.class.version" value="52.0" />
+    <property name="user.country" value="US" />
+    <property name="java.home" value="C:\Program Files\Java\jre1.8.0_40" />
+    <property name="env.PSModulePath" value="C:\Windows\system32\WindowsPowerShell\v1.0\Modules\" />
+    <property name="env.APPDATA" value="C:\Users\William\AppData\Roaming" />
+    <property name="env.PUBLIC" value="C:\Users\Public" />
+    <property name="env.windows_tracing_logfile" value="C:\BVTBin\Tests\installpackage\csilogfile.log" />
+    <property name="java.vm.info" value="mixed mode" />
+    <property name="env.ComSpec" value="C:\Windows\system32\cmd.exe" />
+    <property name="env.OS" value="Windows_NT" />
+    <property name="env.CommonProgramFiles" value="C:\Program Files\Common Files" />
+    <property name="ant.file" value="C:\Users\William\Documents\CS315Project\Trunk\Chocoholics\build.xml" />
+    <property name="os.version" value="6.1" />
+    <property name="env.ProgramW6432" value="C:\Program Files" />
+    <property name="env.QUARTUS_ROOTDIR" value="C:\altera\12.1\quartus" />
+    <property name="path.separator" value=";" />
+    <property name="java.vm.version" value="25.40-b25" />
+    <property name="user.variant" value="" />
+    <property name="env.USERPROFILE" value="C:\Users\William" />
+    <property name="ant.library.dir" value="C:\Dev\EclipseLuna\eclipse\plugins\org.apache.ant_1.9.2.v201404171502\lib" />
+    <property name="junit.output.dir" value="junit" />
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob" />
+    <property name="env.TMP" value="C:\Users\William\AppData\Local\Temp" />
+    <property name="ant.file.Chocoholics" value="C:\Users\William\Documents\CS315Project\Trunk\Chocoholics\build.xml" />
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
+    <property name="user.script" value="" />
+    <property name="user.home" value="C:\Users\William" />
+    <property name="target" value="1.8" />
+    <property name="env.ProgramData" value="C:\ProgramData" />
+    <property name="env.ProgramFiles(x86)" value="C:\Program Files (x86)" />
+    <property name="java.specification.vendor" value="Oracle Corporation" />
+    <property name="java.library.path" value="C:\Program Files\Java\jre1.8.0_40\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\Common Files\Microsoft Shared\Windows Live;c:\Program Files (x86)\Intel\iCLS Client\;c:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files (x86)\Windows Live\Shared;C:\Program Files (x86)\Calibre2\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x64;C:\Program Files\TortoiseSVN\bin;C:\Python33;C:\Program Files (x86)\Microchip\MPLAB C32 Suite\bin;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files (x86)\Microsoft SDKs\TypeScript\1.0\;C:\Program Files (x86)\Skype\Phone\;C:\OrCAD\OrCAD_16.6_Lite\OpenAccess\bin\win32\opt;C:\OrCAD\OrCAD_16.6_Lite\tools\pcb\bin;C:\OrCAD\OrCAD_16.6_Lite\tools\fet\bin;C:\OrCAD\OrCAD_16.6_Lite\tools\Capture;C:\OrCAD\OrCAD_16.6_Lite\tools\PSpice;C:\OrCAD\OrCAD_16.6_Lite\tools\specctra\bin;C:\OrCAD\OrCAD_16.6_Lite\tools\bin;c:\altera\12.1\modelsim_ase\win32aloem;." />
+    <property name="env.NUMBER_OF_PROCESSORS" value="4" />
+    <property name="java.vendor.url" value="http://java.oracle.com/" />
+    <property name="java.vm.vendor" value="Oracle Corporation" />
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+    <property name="ant.version" value="Apache Ant(TM) version 1.9.2 compiled on July 8 2013" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner com.team9.finalproject.InteractiveConnectorTest filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.OutErrSummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\William\Documents\CS315Project\Trunk\Chocoholics\junit\TEST-com.team9.finalproject.InteractiveConnectorTest.xml crashfile=C:\Users\William\Documents\CS315Project\Trunk\Chocoholics\junitvmwatcher6989278391758105141.properties propsfile=C:\Users\William\Documents\CS315Project\Trunk\Chocoholics\junit3857606540033779283.properties" />
+    <property name="java.class.path" value="C:\Users\William\Documents\CS315Project\Trunk\Chocoholics\bin;C:\Dev\EclipseLuna\eclipse\plugins\org.junit_4.11.0.v201303080030\junit.jar;C:\Dev\EclipseLuna\eclipse\plugins\org.hamcrest.core_1.3.0.v201303031735.jar;C:\Dev\EclipseLuna\eclipse\plugins\org.apache.ant_1.9.2.v201404171502\lib\ant-launcher.jar;C:\Dev\EclipseLuna\eclipse\plugins\org.apache.ant_1.9.2.v201404171502\lib\ant.jar;C:\Dev\EclipseLuna\eclipse\plugins\org.apache.ant_1.9.2.v201404171502\lib\ant-junit.jar;C:\Dev\EclipseLuna\eclipse\plugins\org.apache.ant_1.9.2.v201404171502\lib\ant-junit4.jar" />
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+    <property name="env.LOGONSERVER" value="\\NO-STRANJYR" />
+    <property name="env.windir" value="C:\Windows" />
+    <property name="java.vm.specification.version" value="1.8" />
+    <property name="env.PROCESSOR_ARCHITECTURE" value="AMD64" />
+    <property name="sun.os.patch.level" value="Service Pack 1" />
+    <property name="sun.cpu.endian" value="little" />
+    <property name="env.HOME" value="C:\Users\William\AppData\Roaming\SPB_16.6" />
+    <property name="debuglevel" value="source,lines,vars" />
+    <property name="env.ProgramFiles" value="C:\Program Files" />
+    <property name="ant.file.type.Chocoholics" value="file" />
+    <property name="env.ANT_HOME" value="C:\Dev\EclipseLuna\eclipse\plugins\org.apache.ant_1.9.2.v201404171502" />
+    <property name="env.PROCESSOR_REVISION" value="3a09" />
+    <property name="java.io.tmpdir" value="C:\Users\William\AppData\Local\Temp\" />
+    <property name="env.CommonProgramFiles(x86)" value="C:\Program Files (x86)\Common Files" />
+    <property name="env.VS120COMNTOOLS" value="C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\Tools\" />
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/" />
+    <property name="env.SystemRoot" value="C:\Windows" />
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment" />
+    <property name="os.arch" value="amd64" />
+    <property name="java.ext.dirs" value="C:\Program Files\Java\jre1.8.0_40\lib\ext;C:\Windows\Sun\Java\lib\ext" />
+    <property name="env.LOCALAPPDATA" value="C:\Users\William\AppData\Local" />
+    <property name="user.dir" value="C:\Users\William\Documents\CS315Project\Trunk\Chocoholics" />
+    <property name="line.separator" value="&#xd;&#xa;" />
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM" />
+    <property name="env.PATHEXT" value=".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC" />
+    <property name="basedir" value="C:\Users\William\Documents\CS315Project\Trunk\Chocoholics" />
+    <property name="ant.java.version" value="1.8" />
+    <property name="ant.core.lib" value="C:\Dev\EclipseLuna\eclipse\plugins\org.apache.ant_1.9.2.v201404171502\lib\ant.jar" />
+    <property name="env.USERNAME" value="William" />
+    <property name="env.PYROOT" value="C:\Python27" />
+    <property name="source" value="1.8" />
+    <property name="env.SystemDrive" value="C:" />
+    <property name="file.encoding" value="Cp1252" />
+    <property name="env.USERDOMAIN" value="No-Stranjyr" />
+    <property name="java.specification.version" value="1.8" />
+    <property name="ant.project.invoked-targets" value="InteractiveConnectorTest" />
+    <property name="env.SOPC_KIT_NIOS2" value="C:\altera\12.1\nios2eds" />
+    <property name="env.PROCESSOR_LEVEL" value="6" />
+  </properties>
+  <testcase classname="com.team9.finalproject.InteractiveConnectorTest" name="testAddMember_ShouldSucceed" time="0.025" />
+  <testcase classname="com.team9.finalproject.InteractiveConnectorTest" name="testAddMember_ShouldFailState" time="0.008" />
+  <testcase classname="com.team9.finalproject.InteractiveConnectorTest" name="testAddMember_ShouldFailZip" time="0.005" />
+  <testcase classname="com.team9.finalproject.InteractiveConnectorTest" name="testgetMember_ShouldSucceed" time="0.005" />
+  <testcase classname="com.team9.finalproject.InteractiveConnectorTest" name="testgetProvider_ShouldFail" time="0.004" />
+  <testcase classname="com.team9.finalproject.InteractiveConnectorTest" name="testAddProvider_ShouldSucceed" time="0.004" />
+  <testcase classname="com.team9.finalproject.InteractiveConnectorTest" name="testAddProvider_ShouldFailAddress" time="0.007" />
+  <testcase classname="com.team9.finalproject.InteractiveConnectorTest" name="testAddProvider_ShouldFailCity" time="0.004" />
+  <testcase classname="com.team9.finalproject.InteractiveConnectorTest" name="testAddProvider_ShouldFailName" time="0.004" />
+  <testcase classname="com.team9.finalproject.InteractiveConnectorTest" name="testAddMember_ShouldFailAddress" time="0.006" />
+  <testcase classname="com.team9.finalproject.InteractiveConnectorTest" name="testAddProvider_ShouldFailZip" time="0.004" />
+  <testcase classname="com.team9.finalproject.InteractiveConnectorTest" name="testgetProvider_ShouldSucceed" time="0.005" />
+  <testcase classname="com.team9.finalproject.InteractiveConnectorTest" name="testgetMember_ShouldFail" time="0.009" />
+  <testcase classname="com.team9.finalproject.InteractiveConnectorTest" name="testAddProvider_ShouldFailState" time="0.002" />
+  <testcase classname="com.team9.finalproject.InteractiveConnectorTest" name="testAddMember_ShouldFailCity" time="0.005" />
+  <testcase classname="com.team9.finalproject.InteractiveConnectorTest" name="testAddMember_ShouldFailName" time="0.008" />
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
