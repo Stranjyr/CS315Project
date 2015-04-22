@@ -1,3 +1,0 @@
-000000 test_code 0.00
-598470 dietitian 200.00
-883948 aerobics_exercise 300.00

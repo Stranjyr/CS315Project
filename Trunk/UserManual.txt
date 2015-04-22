@@ -25,3 +25,28 @@ B – Bill: The bill for service option will allow the user to enter a member nu
 V – Validate: The validate for service option will allow the user to validate a member’s id number within the database. 
 D – Directory: The Directory option will bring up a list of id codes for billable services.
 Q – Quit: The quit option will exit the system.
+
+
+Task Distribution
+1) Implementation
+	a) William Hampton	(20%)
+	b) Austin Hyde		(20%)
+	c) Ben Kidd		(20%)
+	d) Joe Fowler		(20%)
+	e) Justin Gifford	(20%)
+2) User Manual 			(Ben Kidd)
+3) Update Class Diagrams 	(William Hampton)
+4) Update Sequence Diagrams
+	a) Add Provider 	(William Hampton)
+	b) Add Member 		(Justin Gifford)
+	c) ID Bag 		(Benn Kidd)
+	d) Get Directory 	(Joe Fowler)
+	e) Bill For Service 	(Austin Hyde)
+5) JUnit Tests 
+	a) Add Provider 	(William Hampton)
+	b) Add Member 		(Justin Gifford)
+	c) ID Bag 		(Ben Kidd)
+	d) Get Directory 	(Joe Fowler)
+	e) Bill For Service 	(Austin Hyde)
+6) Generate JavaDocs 		(William Hampton)
+

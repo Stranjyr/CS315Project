@@ -104,6 +104,9 @@ public class InteractiveConnectorTest {
 				"Provider 000000002 added successfuly", 
 				interact.addProvider("John Doe", "123 First St", "Anytown", "AL", "12345"));
 	}
+	}
+	}
+	}
 	@Test
 	public void testgetMember_ShouldFail() {
 		assertEquals(
