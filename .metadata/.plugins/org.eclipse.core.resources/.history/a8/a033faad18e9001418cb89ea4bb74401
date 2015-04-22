@@ -76,7 +76,7 @@ public class InteractiveConnector implements ConnectorInterface{
 		  +"**** R == REPORT - Run Reports*******\n"
 		  +"**** P == PROVIDERS - List Providers*\n"
 		  +"**** M == MEMBERS - List Members*****\n"
-		  +"**** G == Get Data - Show Data*******\n"
+		  +"**** G == Get Data - Show Data*****\n"
 		  +"**** Q == QUIT - Quits***************\n"
 		  +"*************************************\n"
 		  +"*************************************\n";
