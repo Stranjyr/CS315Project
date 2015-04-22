@@ -344,7 +344,7 @@ public class InteractiveConnector implements ConnectorInterface{
 	private String memberReport(String id) {
 		if(dm.findMember(id) == -1)
 		{
-			return "Error: Invalid Provider Number";
+			return "Error: Invalid Member Number";
 		}
 		ArrayList<Service> sers = dm.findServiceByMember(id);
 		ReportGenerator r = new MemberReport();
