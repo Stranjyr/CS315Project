@@ -7,7 +7,7 @@ import java.io.Serializable;
  * 
  * This Class is a storage medium for data tied to
  * a particular user
- * @author wchampton
+ * @author William Hampton
  *
  */
 public class User implements DataInterface, Serializable{

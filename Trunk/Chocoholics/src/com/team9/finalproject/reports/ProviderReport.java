@@ -13,7 +13,7 @@ import java.text.NumberFormat;
  * 
  *   This class is used to receive and
  *   compile Provider data to be used by the report generator
- *   @author William Hampton
+ *   @author Joe Fowler
  *   
  */
 public class ProviderReport implements ReportGenerator {

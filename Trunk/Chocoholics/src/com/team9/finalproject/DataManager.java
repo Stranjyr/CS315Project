@@ -20,7 +20,7 @@ import com.team9.finalproject.dataMembers.*;
  * 
  * It will be initialized once on a machine, and then
  * loaded from a serialized file every other time.
- *  @author wchampton
+ *  @author William Hampton
  *
  */
 public class DataManager implements Serializable{

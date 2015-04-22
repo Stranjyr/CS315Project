@@ -1,5 +1,10 @@
 package com.team9.finalproject;
 
+/**
+ * @author Justin Gifford
+ * @author William Hampton
+ */
+
 import static org.junit.Assert.*;
 
 import java.util.Random;
@@ -29,6 +34,7 @@ public class InteractiveConnectorTest {
 	
 	/*
 	 * Begin tests for InteractiveConnector.AddMember
+	 * Justin Gifford
 	 */
 	@Test
 	public void testAddMember_ShouldFailName() {

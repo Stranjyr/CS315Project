@@ -11,7 +11,7 @@ import com.team9.finalproject.dataMembers.Service;
  *  that is then saved to the
  *  database so that it can
  *  be requested for email.
- *  
+ *  @author Joe Fowler
  */
 
 public interface ReportGenerator {

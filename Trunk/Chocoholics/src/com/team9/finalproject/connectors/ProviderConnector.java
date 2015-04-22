@@ -13,7 +13,7 @@ import com.team9.finalproject.DataManager;
 
 /**
  * Connects providers to the data manager; uses the command line for IO.
- * @author William Hampton
+ * @author Justin Gifford
  */
 public class ProviderConnector implements ConnectorInterface{
 

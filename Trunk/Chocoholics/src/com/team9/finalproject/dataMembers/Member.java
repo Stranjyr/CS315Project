@@ -5,7 +5,7 @@ import java.io.Serializable;
  * 
  * 
  *This class is a storage medium for data associated with a  particular member.
- *@author William Hampton
+ *@author Justin Gifford
  */
 public class Member extends User implements DataInterface, Serializable{
 

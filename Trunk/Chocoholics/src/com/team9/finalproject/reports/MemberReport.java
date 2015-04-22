@@ -14,7 +14,7 @@ import com.team9.finalproject.dataMembers.Service;
  * 
  *   This class is used to receive and
  *   compile Member data to be used by the report generator
- *   @author William Hampton
+ *   @author Joe Fowler
  *   
  */
 
