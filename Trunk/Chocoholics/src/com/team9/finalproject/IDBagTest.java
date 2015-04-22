@@ -1,0 +1,47 @@
+package com.team9.finalproject;
+
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import com.team9.finalproject.dataMembers.IdBag;
+/**
+ * 
+ * @author Ben
+ *
+ */
+public class IDBagTest {
+
+	IdBag id;
+	@Before
+	public void setUp() throws Exception {
+		id = new IdBag(0, 10);
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+
+	@Test
+	public void nextIDshouldBeZero() {
+		assertEquals("000000000", id.nextId());
+	}
+	@Test
+	public void nextIDshouldBeOut() {
+		for(int i = 0; i<11; i++)
+		{
+			id.nextId();
+		}
+		assertEquals(null, id.nextId());
+	}
+
+	@Test
+	public void testFreeID() {
+		String out = id.nextId();
+		id.freeID(out);
+		assertEquals("000000000", id.nextId());
+	}
+
+}

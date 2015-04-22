@@ -3,7 +3,6 @@ package com.team9.finalproject.connectors;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,7 +10,6 @@ import java.util.Map.Entry;
 import java.util.Scanner;
 
 import com.team9.finalproject.DataManager;
-import com.team9.finalproject.dataMembers.Service;
 
 /**
  * Connects providers to the data manager; uses the command line for IO.
@@ -32,6 +30,16 @@ public class ProviderConnector implements ConnectorInterface{
 		dm = loadDataManager();
 		commandLoop();
 		scan.close();
+	}
+	
+	/**
+	 * For Unit Testing only
+	 * @param d: datamanager to load
+	 */
+	public ProviderConnector(DataManager d)
+	{
+		
+		dm = d;
 	}
 	
 	/**
@@ -204,11 +212,11 @@ public class ProviderConnector implements ConnectorInterface{
 	 * Add a service bill to the data manager. It first validates all data, 
 	 * and returns an error message if needed. If all data is valid, the bill
 	 * is added to the data manager and returns 'active'.
-	 * @param memberId
-	 * @param provId
-	 * @param serviceCode
-	 * @param dateBill
-	 * @param comment
+	 * @param memberId: the memberID
+	 * @param provId: the provider id
+	 * @param serviceCode: the service code
+	 * @param dateBill: the date this service happened
+	 * @param comment: any comments on the service
 	 * @return String: If error, returns description of the error. If validated, returns 'active'
 	 */
 	public String bill(String memberId, String provId, String serviceCode, String dateBill, String comment)
@@ -250,7 +258,7 @@ public class ProviderConnector implements ConnectorInterface{
 	}
 	/**
 	 * Checks if the given member ID corresponds to an existing member.
-	 * @param memberId
+	 * @param memberId: The memberID
 	 * @return String:  If error, returns description of the error. If validated, returns 'active'
 	 */
 	public String validate(String memberId)
@@ -264,7 +272,7 @@ public class ProviderConnector implements ConnectorInterface{
 		return status;
 	}
 	/**
-	 * Returns a directory with all available services.
+	 * Returns a directory with all available services and their codes.
 	 * @return String: the services
 	 */
 	public String getDirectory()
@@ -279,7 +287,7 @@ public class ProviderConnector implements ConnectorInterface{
 
 	@Override
 	/**
-	 * Tells data manager to save and then exists.
+	 * Tells data manager to save and then exits.
 	 */
 	public String quit() {
 		return dm.save()+"\nExiting";

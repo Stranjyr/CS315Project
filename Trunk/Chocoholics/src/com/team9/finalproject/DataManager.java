@@ -13,13 +13,14 @@ import java.util.Scanner;
 
 import com.team9.finalproject.dataMembers.*;
 /**
- * @author wchampton
+ *
  * This class acts as a database for all
  * of the member, provider, and service data
  * we enter into Chocoholics.
  * 
  * It will be initialized once on a machine, and then
  * loaded from a serialized file every other time.
+ *  @author wchampton
  *
  */
 public class DataManager implements Serializable{
@@ -46,7 +47,7 @@ public class DataManager implements Serializable{
 	/**
 	 * This method returns the next available member ID. Used for 
 	 * adding new members
-	 * @return id - String of the next ID
+	 * @return id: String of the next ID
 	 */
 	public String getNextMemID()
 	{
@@ -55,7 +56,7 @@ public class DataManager implements Serializable{
 	/**
 	 * this Method returns the next available provider ID. Used for
 	 * adding new providers.
-	 * @return id - String of the next ID
+	 * @return id: String of the next ID
 	 */
 	public String getNextProvID()
 	{
@@ -63,8 +64,8 @@ public class DataManager implements Serializable{
 	}
 	/**
 	 * Returns the index of the member by id, or -1 if no such member
-	 * @param id
-	 * @return index - int of member location
+	 * @param id: the memberID
+	 * @return index: int of member location
 	 */
 	public int findMember(String id)
 	{
@@ -79,8 +80,8 @@ public class DataManager implements Serializable{
 	}
 	/**
 	 * Returns the index of the provider by id, or -1 if no such provider
-	 * @param id
-	 * @return index - int of provider location
+	 * @param id: the providerID
+	 * @return index: int of provider location
 	 */
 	public int findProvider(String id)
 	{
@@ -94,8 +95,8 @@ public class DataManager implements Serializable{
 	}
 	/**
 	 * Creates a copy of the member with the given id. Returns null if no member found.
-	 * @param id
-	 * @return member - A copy of the member with the given id
+	 * @param id: the memberID
+	 * @return member: A copy of the member with the given id
 	 */
 	public Member findAndCloneMember(String id)
 	{
@@ -108,8 +109,8 @@ public class DataManager implements Serializable{
 	}
 	/**
 	 * Creates a copy of the provider with the given id. Returns null if no provider found.
-	 * @param id
-	 * @return provider - A copy of the user with the given id
+	 * @param id: the provideID
+	 * @return provider: A copy of the user with the given id
 	 */
 	public User findAndCloneProvider(String id)
 	{
@@ -122,8 +123,8 @@ public class DataManager implements Serializable{
 	}
 	/**
 	 * Gets the status of a member by id
-	 * @param memberID
-	 * @return Status of member, "Member does not exist" if no member
+	 * @param memberID: the memberID
+	 * @return status: Status of member, "Member does not exist" if no member
 	 */
 	public String validateMember(String memberID)
 	{
@@ -137,8 +138,8 @@ public class DataManager implements Serializable{
 	}
 	/**
 	 * Returns a list of all services associated with memberid. Empty list if no such member
-	 * @param id
-	 * @return Services - ArrayList<service> 
+	 * @param id: the memberID
+	 * @return Services: ArrayList(service) associated with the provider
 	 */
 	public ArrayList<Service> findServiceByMember(String id)
 	{
@@ -154,8 +155,8 @@ public class DataManager implements Serializable{
 	}
 	/**
 	 * Returns a list of all services associated with providerID. Empty list if no such provider
-	 * @param id
-	 * @return Services - ArrayList<service> 
+	 * @param id: the providerID
+	 * @return Services: ArrayList(service) associated with the provider
 	 */
 	public ArrayList<Service> findServiceByProvider(String id)
 	{
@@ -171,7 +172,7 @@ public class DataManager implements Serializable{
 	}
 	/**
 	 * Adds User p to providerList
-	 * @param p - new provider
+	 * @param p: new provider to be added
 	 */
 	public void addProvider(User p)
 	{
@@ -187,7 +188,7 @@ public class DataManager implements Serializable{
 	}
 	/**
 	 * Adds service s to serviceList
-	 * @param s
+	 * @param s: service to be added
 	 */
 	public void addService(Service s)
 	{
@@ -198,12 +199,12 @@ public class DataManager implements Serializable{
 	 * This is used when you have most but not all of
 	 * the necessary fields
 	 * that need to be looked up in order to create a new service.
-	 * @param serviceCode
-	 * @param serviceDate
-	 * @param recivedDate
-	 * @param providerNumber
-	 * @param memberNumber
-	 * @param comment
+	 * @param serviceCode: the service code
+	 * @param serviceDate: the date the service happened
+	 * @param recivedDate: the date the service was billed
+	 * @param providerNumber: the providerID
+	 * @param memberNumber: the memberID
+	 * @param comment: any comments about the service
 	 */
 	public void addService(String serviceCode, String serviceDate, String recivedDate, String providerNumber, String memberNumber, String comment)
 	{
@@ -215,9 +216,9 @@ public class DataManager implements Serializable{
 	}
 	/**
 	 * replaces member with the given ID with new member in MemberList
-	 * @param id
-	 * @param newM
-	 * @return code - String that lets user know if edit worked. "EDIT COMPLETE" if edit worked
+	 * @param id: memberID
+	 * @param newM: member to replace the old one
+	 * @return code: String that lets user know if edit worked. "EDIT COMPLETE" if edit worked
 	 */
 	public String editMember(String id, Member newM)
 	{
@@ -231,9 +232,9 @@ public class DataManager implements Serializable{
 	}
 	/**
 	 * replaces user with the given ID with new user in ProviderList
-	 * @param id
-	 * @param newP
-	 * @return String that lets user know if edit worked. "EDIT COMPLETE" if edit worked.
+	 * @param id: the providerID
+	 * @param newP: provider to replace the old one
+	 * @return status: String that lets user know if edit worked. "EDIT COMPLETE" if edit worked.
 	 */
 	public String editProvider(String id, User newP)
 	{
@@ -247,8 +248,8 @@ public class DataManager implements Serializable{
 	}
 	/**
 	 * Deletes member with the given ID
-	 * @param id
-	 * @return Code - String with status of change. "EDIT COMPLETE" if valid.
+	 * @param id: the memberID to delete
+	 * @return Code: String with status of change. "EDIT COMPLETE" if valid.
 	 */
 	public String removeMember(String id)
 	{
@@ -264,8 +265,8 @@ public class DataManager implements Serializable{
 	}
 	/**
 	 * Deletes user with the given ID
-	 * @param id
-	 * @return Code - String with status of change. "EDIT COMPLETE" if valid.
+	 * @param id: the providerID to delete
+	 * @return Code: String with status of change. "EDIT COMPLETE" if valid.
 	 */
 	public String removeProvider(String id)
 	{
@@ -279,8 +280,8 @@ public class DataManager implements Serializable{
 		return "EDIT COMPLETE";
 	}
 	/**
-	 * Gives the directory as a HashMap<String, String>
-	 * @return dir - HashMap<String, String> of service directory
+	 * Gives the directory as a HashMap(String, String)
+	 * @return dir: HashMap(String, String) of service directory
 	 */
 	public HashMap<String, String> getDir()
 	{
@@ -288,8 +289,8 @@ public class DataManager implements Serializable{
 	}
 	/**
 	 * Calculates the cost of a service by service code
-	 * @param serviceCode
-	 * @return cost - float value of cost
+	 * @param serviceCode: the service code to look up price
+	 * @return cost: float value of cost
 	 */
 	public float calculateServiceCost(String serviceCode)
 	{
@@ -297,7 +298,7 @@ public class DataManager implements Serializable{
 	}
 	/**
 	 * Provides a string list of member names and ID's
-	 * @return memList - String of member names and ID's, separated by new lines
+	 * @return memList: String of member names and ID's, separated by new lines
 	 */
 	public String listMembers()
 	{
@@ -310,7 +311,7 @@ public class DataManager implements Serializable{
 	}
 	/**
 	 * Gives a list of all member ID's. Useful for reports
-	 * @return idList - ArrayList<String> of member Ids.
+	 * @return idList: ArrayList(String) of member Ids.
 	 */
 	public ArrayList<String> listMemberIds()
 	{
@@ -323,7 +324,7 @@ public class DataManager implements Serializable{
 	}
 	/**
 	 * Gives a list of all provider ID's. Useful for reports
-	 * @return idList - ArrayList<String> of provider Ids.
+	 * @return idList: ArrayList(String) of provider Ids.
 	 */
 	public ArrayList<String> listProviderIds()
 	{
@@ -336,7 +337,7 @@ public class DataManager implements Serializable{
 	}
 	/**
 	 * Provides a string list of member names and ID's
-	 * @return memList - String of member names and ID's, separated by new lines
+	 * @return memList: String of member names and ID's, separated by new lines
 	 */
 	public String listProviders()
 	{
@@ -348,10 +349,10 @@ public class DataManager implements Serializable{
 		return s;
 	}
 	/**
-	 * This method serializd the current instance of this class, and saves it to
+	 * This method serializes the current instance of this class, and saves it to
 	 * "/ChocoData.ser". This method should be called every time you destruct
 	 * a DataManager. 
-	 * @return status - Returns "Data is saved in /ChocoData.ser" if save worked
+	 * @return status: Returns "Data is saved in /ChocoData.ser" if save worked
 	 */
 	public String save()
 	{
@@ -406,5 +407,3 @@ public class DataManager implements Serializable{
 	
 
 }
-
-

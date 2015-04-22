@@ -5,9 +5,8 @@ import java.text.NumberFormat;
 
 
 /**
- * 
- * @author Benjamin Kidd
- * This class is a storage medium for data associated with a service. 
+ * This class is a storage medium for data associated with a service.
+ * @author Benjamin Kidd 
  */
 public class Service implements DataInterface, Serializable{
 
@@ -118,18 +117,37 @@ public class Service implements DataInterface, Serializable{
 		this.memberName = memberName;
 	}
 
+	/**
+	 * This method returns a formatted string of all the data in the class
+	 * It is used to aid report standardization.
+	 * @return report a formatted string of all the data in the User. 
+	 * 
+	 */
 	@Override
 	public String reportFormat() {
 		return String.format("Service Code: %s\nService Date: %s\nRecived Date: %s\nProvider Number: %s\nMember Number: %s\n"
 				, serviceCode, serviceDate, recivedDate, providerNumber, memberNumber);
 
 	}
+	/**
+	 * This method returns a formatted string of the data needed for a
+	 * member Report.
+	 * It is used to aid report standardization.
+	 * @return report a formatted string 
+	 * 
+	 */
 	public String memberFormat()
 	{
 		return String.format("Service Date: %s\nService Name: %s\nProvider Name: %s\n"
 				, serviceDate, serviceName, providerName);
 	}
-	// needs to be finished
+	/**
+	 * This method returns a formatted string of the data needed for a
+	 * provider Report.
+	 * It is used to aid report standardization.
+	 * @return report a formatted string 
+	 * 
+	 */
 	public String providerFormat()
 	{
 		String actualFee = NumberFormat.getCurrencyInstance().format(Float.parseFloat(fee));

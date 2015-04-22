@@ -22,4 +22,5 @@
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="com.team9.finalproject.dataMembers.Service"/>
 <fullyQualifiedTypeName name="com.team9.finalproject.reports.ProviderReport"/>
+<fullyQualifiedTypeName name="com.team9.finalproject.connectors.InteractiveConnector"/>
 </qualifiedTypeNameHistroy>

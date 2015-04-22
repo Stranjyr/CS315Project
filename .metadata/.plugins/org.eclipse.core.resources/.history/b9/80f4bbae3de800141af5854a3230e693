@@ -1,0 +1,411 @@
+package com.team9.finalproject;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
+
+import com.team9.finalproject.dataMembers.*;
+/**
+ *
+ * This class acts as a database for all
+ * of the member, provider, and service data
+ * we enter into Chocoholics.
+ * 
+ * It will be initialized once on a machine, and then
+ * loaded from a serialized file every other time.
+ *  @author wchampton
+ *
+ */
+public class DataManager implements Serializable{
+
+	private ArrayList<Member> memberList;
+	private ArrayList<User> providerList;
+	private ArrayList<Service> serviceList;
+	private HashMap<String, String> serviceDir;
+	private HashMap<String, Float> serviceCostMap;
+	private IdBag memID;
+	private IdBag provID;
+	public DataManager() {
+		super();
+		memberList = new ArrayList<Member>();
+		providerList = new ArrayList<User>();
+		serviceList = new ArrayList<Service>();
+		serviceDir = new HashMap<String, String>();
+		serviceCostMap = new HashMap<String, Float>();
+		setupStaticFields();
+		memID = new IdBag(0, 999999999);
+		provID = new IdBag(0, 999999999);
+		//Load in serviceDir and serviceCostMap
+	}
+	/**
+	 * This method returns the next available member ID. Used for 
+	 * adding new members
+	 * @return id: String of the next ID
+	 */
+	public String getNextMemID()
+	{
+		return memID.nextId();
+	}
+	/**
+	 * this Method returns the next available provider ID. Used for
+	 * adding new providers.
+	 * @return id: String of the next ID
+	 */
+	public String getNextProvID()
+	{
+		return provID.nextId();
+	}
+	/**
+	 * Returns the index of the member by id, or -1 if no such member
+	 * @param id: the memberID
+	 * @return index: int of member location
+	 */
+	public int findMember(String id)
+	{
+		for(Member m : memberList)
+		{
+			if(m.getNumber().equals(id))
+				//This is necessary because of the enhanced for loop
+				return memberList.indexOf(m);
+		}
+		//Member Doesn't Exist
+		return -1;
+	}
+	/**
+	 * Returns the index of the provider by id, or -1 if no such provider
+	 * @param id: the providerID
+	 * @return index: int of provider location
+	 */
+	public int findProvider(String id)
+	{
+		for(User p: providerList)
+		{
+			if(p.getNumber().equals(id))
+				//This is necessary because of the enhanced for loop
+				return providerList.indexOf(p);
+		}
+		return -1;
+	}
+	/**
+	 * Creates a copy of the member with the given id. Returns null if no member found.
+	 * @param id: the memberID
+	 * @return member: A copy of the member with the given id
+	 */
+	public Member findAndCloneMember(String id)
+	{
+		for(Member m : memberList)
+		{
+			if(m.getNumber().equals(id))
+				return m;
+		}
+		return null;
+	}
+	/**
+	 * Creates a copy of the provider with the given id. Returns null if no provider found.
+	 * @param id: the provideID
+	 * @return provider: A copy of the user with the given id
+	 */
+	public User findAndCloneProvider(String id)
+	{
+		for(User p: providerList)
+		{
+			if(p.getNumber().equals(id))
+				return p;
+		}
+		return null;
+	}
+	/**
+	 * Gets the status of a member by id
+	 * @param memberID: the memberID
+	 * @return status: Status of member, "Member does not exist" if no member
+	 */
+	public String validateMember(String memberID)
+	{
+		int m = findMember(memberID);
+		if(m!=-1)
+		{
+			Member mem = memberList.get(m);
+			return mem.getStatus();
+		}
+		return "Member Does Not Exist";
+	}
+	/**
+	 * Returns a list of all services associated with memberid. Empty list if no such member
+	 * @param id: the memberID
+	 * @return Services: ArrayList<service> associated with the provider
+	 */
+	public ArrayList<Service> findServiceByMember(String id)
+	{
+		ArrayList<Service> ser = new ArrayList<Service>();
+		for(Service s: serviceList)
+		{
+			if(s.getMemberNumber().equals(id))
+			{
+				ser.add(s);
+			}
+		}
+		return ser;
+	}
+	/**
+	 * Returns a list of all services associated with providerID. Empty list if no such provider
+	 * @param id: the providerID
+	 * @return Services: ArrayList<service> associated with the provider
+	 */
+	public ArrayList<Service> findServiceByProvider(String id)
+	{
+		ArrayList<Service> ser = new ArrayList<Service>();
+		for(Service s: serviceList)
+		{
+			if(s.getProviderNumber().equals(id))
+			{
+				ser.add(s);
+			}
+		}
+		return ser;
+	}
+	/**
+	 * Adds User p to providerList
+	 * @param p: new provider to be added
+	 */
+	public void addProvider(User p)
+	{
+		providerList.add(p);
+	}
+	/**
+	 * Adds member m to memberList
+	 * @param m - new member
+	 */
+	public void addMember(Member m)
+	{
+		memberList.add(m);
+	}
+	/**
+	 * Adds service s to serviceList
+	 * @param s: service to be added
+	 */
+	public void addService(Service s)
+	{
+		serviceList.add(s);
+	}
+	/**
+	 * Adds services with the given parameters to serviceList.
+	 * This is used when you have most but not all of
+	 * the necessary fields
+	 * that need to be looked up in order to create a new service.
+	 * @param serviceCode: the service code
+	 * @param serviceDate: the date the service happened
+	 * @param recivedDate: the date the service was billed
+	 * @param providerNumber: the providerID
+	 * @param memberNumber: the memberID
+	 * @param comment: any comments about the service
+	 */
+	public void addService(String serviceCode, String serviceDate, String recivedDate, String providerNumber, String memberNumber, String comment)
+	{
+		serviceList.add(new Service(serviceCode, this.serviceDir.get(serviceCode), 
+				this.serviceCostMap.get(serviceCode).toString(),
+				serviceDate, recivedDate, providerNumber, 
+				this.findAndCloneProvider(providerNumber).getName(),
+				memberNumber, this.findAndCloneMember(memberNumber).getName(), comment));
+	}
+	/**
+	 * replaces member with the given ID with new member in MemberList
+	 * @param id: memberID
+	 * @param newM: member to replace the old one
+	 * @return code: String that lets user know if edit worked. "EDIT COMPLETE" if edit worked
+	 */
+	public String editMember(String id, Member newM)
+	{
+		int memIndex = findMember(id);
+		if(memIndex == -1)
+		{
+			return "FAILED: INVALID ID";
+		}
+		memberList.set(memIndex, newM);
+		return "EDIT COMPLETE";
+	}
+	/**
+	 * replaces user with the given ID with new user in ProviderList
+	 * @param id: the providerID
+	 * @param newP: provider to replace the old one
+	 * @return status: String that lets user know if edit worked. "EDIT COMPLETE" if edit worked.
+	 */
+	public String editProvider(String id, User newP)
+	{
+		int provIndex = findProvider(id);
+		if(provIndex == -1)
+		{
+			return "FAILED: INVALID ID";
+		}
+		providerList.set(provIndex, newP);
+		return "EDIT COMPLETE";
+	}
+	/**
+	 * Deletes member with the given ID
+	 * @param id: the memberID to delete
+	 * @return Code: String with status of change. "EDIT COMPLETE" if valid.
+	 */
+	public String removeMember(String id)
+	{
+		int memIndex = findMember(id);
+		if(memIndex == -1)
+		{
+			return "FAILED: INVALID ID";
+		}
+		memberList.remove(memIndex);
+		memID.freeID(id);
+		
+		return "EDIT COMPLETE";
+	}
+	/**
+	 * Deletes user with the given ID
+	 * @param id: the providerID to delete
+	 * @return Code: String with status of change. "EDIT COMPLETE" if valid.
+	 */
+	public String removeProvider(String id)
+	{
+		int provIndex = findProvider(id);
+		if(provIndex == -1)
+		{
+			return "FAILED: INVALID ID";
+		}
+		providerList.remove(provIndex);
+		provID.freeID(id);
+		return "EDIT COMPLETE";
+	}
+	/**
+	 * Gives the directory as a HashMap<String, String>
+	 * @return dir: HashMap<String, String> of service directory
+	 */
+	public HashMap<String, String> getDir()
+	{
+		return serviceDir;
+	}
+	/**
+	 * Calculates the cost of a service by service code
+	 * @param serviceCode: the service code to look up price
+	 * @return cost: float value of cost
+	 */
+	public float calculateServiceCost(String serviceCode)
+	{
+		return serviceCostMap.get(serviceCode);
+	}
+	/**
+	 * Provides a string list of member names and ID's
+	 * @return memList: String of member names and ID's, separated by new lines
+	 */
+	public String listMembers()
+	{
+		String s = "";
+		for(Member m: memberList)
+		{
+			s+="Name:: "+m.getName()+" --  ID::  "+m.getNumber()+"\n";
+		}
+		return s;
+	}
+	/**
+	 * Gives a list of all member ID's. Useful for reports
+	 * @return idList: ArrayList<String> of member Ids.
+	 */
+	public ArrayList<String> listMemberIds()
+	{
+		ArrayList<String> ids = new ArrayList<String>();
+		for(Member m:memberList)
+		{
+			ids.add(m.getNumber());
+		}
+		return ids;
+	}
+	/**
+	 * Gives a list of all provider ID's. Useful for reports
+	 * @return idList: ArrayList<String> of provider Ids.
+	 */
+	public ArrayList<String> listProviderIds()
+	{
+		ArrayList<String> ids = new ArrayList<String>();
+		for(User m: providerList)
+		{
+			ids.add(m.getNumber());
+		}
+		return ids;
+	}
+	/**
+	 * Provides a string list of member names and ID's
+	 * @return memList: String of member names and ID's, separated by new lines
+	 */
+	public String listProviders()
+	{
+		String s = "";
+		for(User p: providerList)
+		{
+			s+="Name:: "+p.getName()+" --  ID::  "+p.getNumber()+ "\n";
+		}
+		return s;
+	}
+	/**
+	 * This method serializes the current instance of this class, and saves it to
+	 * "/ChocoData.ser". This method should be called every time you destruct
+	 * a DataManager. 
+	 * @return status: Returns "Data is saved in /ChocoData.ser" if save worked
+	 */
+	public String save()
+	{
+		try
+	      {
+			//Serialize the Class, and save to file
+	         FileOutputStream fileOut =
+	         new FileOutputStream("/ChocoData.ser");
+	         ObjectOutputStream out = new ObjectOutputStream(fileOut);
+	         out.writeObject(this);
+	         out.close();
+	         fileOut.close();
+	         return "Data is saved in /ChocoData.ser";
+	      }catch(IOException i)
+	      {  
+	    	  i.printStackTrace();
+	    	  return "Save failed: Data Corrupt";
+	      }
+	}
+	
+	
+	/**
+	 * This is a method used to set up static filesLists the first time the code is run.
+	 * Those are currently the serviceDirectory and the serverCostMap.
+	 * Note - It has bad cohesion, but this is a necessary element that is rarely used, so
+	 * that is ok.
+	 */
+	private void setupStaticFields()
+	{
+		try{
+			
+			Scanner scan = new Scanner(new File("./dir.dat"));
+			while(scan.hasNext()){
+				String code = scan.next();
+				String name = scan.next();
+				float cost = scan.nextFloat();
+				serviceDir.put(code, name);
+				serviceCostMap.put(code, cost);
+			}
+			scan.close();
+			return;
+			
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+			return;
+		}
+		
+	}
+	
+	
+
+}
+
+

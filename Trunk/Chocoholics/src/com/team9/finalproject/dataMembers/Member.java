@@ -5,6 +5,7 @@ import java.io.Serializable;
  * 
  * 
  *This class is a storage medium for data associated with a  particular member.
+ *@author William Hampton
  */
 public class Member extends User implements DataInterface, Serializable{
 
@@ -24,6 +25,12 @@ public class Member extends User implements DataInterface, Serializable{
 		this.status = status;
 	}
 
+	/**
+	 * This method returns a formatted string of all the data in the class
+	 * It is used to aid report standardization.
+	 * @return report a formatted string of all the data in the Member. 
+	 * 
+	 */
 	@Override
 	public String reportFormat() {
 		return super.reportFormat();
