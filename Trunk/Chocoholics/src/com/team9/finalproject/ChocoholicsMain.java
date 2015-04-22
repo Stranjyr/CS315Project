@@ -16,7 +16,7 @@ import com.team9.finalproject.dataMembers.User;
  * For debug purposes, also allows users to generate random members and
  * providers to populate the data manager.
  * 
- * @author William
+ * @author William Hampton
  */
 public class ChocoholicsMain {
 	

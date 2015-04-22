@@ -10,6 +10,10 @@ import com.team9.finalproject.connectors.ProviderConnector;
 import com.team9.finalproject.dataMembers.Member;
 import com.team9.finalproject.dataMembers.User;
 
+/**
+ * @author Austin Hyde
+ */
+
 public class ProviderConnectorTest {
 	DataManager dm;
 	ProviderConnector pc;

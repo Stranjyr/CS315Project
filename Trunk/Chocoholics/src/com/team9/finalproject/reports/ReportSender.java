@@ -10,7 +10,7 @@ import java.io.File;
  * Currently the email system
  *  isn't implemented 
  *  because emails don't exist for those requesting
- *  @author William Hampton
+ *  @author Joe Fowler
  *
  */
 public class ReportSender {
